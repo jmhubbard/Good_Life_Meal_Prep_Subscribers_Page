@@ -50,6 +50,10 @@ class UserChangeForm(forms.ModelForm):
         model = User
         fields = ('email', 'name', 'password', 'date_of_birth', 'is_active', 'is_admin')
 
+    def clean_email(self):
+        email = self.cleaned_data['email'].lower()
+        return email
+
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
         # This is done here, rather than on the field, because the
