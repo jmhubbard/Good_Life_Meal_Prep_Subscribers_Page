@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<h1>Weekly Menu </h1>
+
+<h2>Welcome, {{current_user}}</h2>
+
+{% for item in recipes %}
+    <h2>{{item.name}}</h2>
+{% endfor %}
+
+
+{% endblock content %}
