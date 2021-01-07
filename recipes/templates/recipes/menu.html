@@ -6,9 +6,15 @@
 
 <h2>Welcome, {{current_user}}</h2>
 
-{% for item in recipes %}
-    <h2>{{item.name}}</h2>
+<h2>Test</h2>
+<h2>test2</h2>
+<form>
+    {% for order in orderItems %}
+    <h2>{{order.name}} - {{order.name.description}} {{order.name.calories}}</h2>
 {% endfor %}
-
+</form>
+{% for order in orderItems %}
+    <h2>{{order.name}} - {{order.name.description}} {{order.name.calories}}</h2>
+{% endfor %}
 
 {% endblock content %}
