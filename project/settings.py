@@ -128,4 +128,4 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.User'
 
-LOGIN_REDIRECT_URL = 'order-create'
+LOGIN_REDIRECT_URL = 'menu'
