@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
+from .models import Order, OrderItem
 
-# Create your views here.
+class OrderItemCreateView(CreateView):
+    model = OrderItem
+    fields =['name', 'quantity']
