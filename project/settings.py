@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'users',
     'recipes',
     'orders',
+    'main',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.User'
+
+LOGIN_REDIRECT_URL = 'order-create'
