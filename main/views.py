@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from django.views.generic.base import TemplateView
 from django.utils.decorators import method_decorator
-from main.decorators import unauthenticated_user
+from .decorators import unauthenticated_user
 
 
 
@@ -27,4 +27,4 @@ class UserLoginView(LoginView):
 
 class UserLogoutView(LogoutView):
 
-    next_page = 'login'
+    next_page = 'home'
