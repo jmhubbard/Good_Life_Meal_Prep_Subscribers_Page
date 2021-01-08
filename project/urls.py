@@ -19,8 +19,7 @@ from main.views import HomePageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('orders/', include('orders.urls')),
     path('accounts/', include('users.urls')),
-    path('subscriptions/', include('subscriptions.urls')),
     path('', HomePageView.as_view(), name='home'),
+    path('menu', include('orderitems.urls')),
 ]
