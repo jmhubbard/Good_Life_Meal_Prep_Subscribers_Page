@@ -41,9 +41,7 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'users',
-    'recipes',
     'main',
-    'subscriptions',
     'meals',
     'orderitems',
 ]
@@ -130,4 +128,4 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.User'
 
-LOGIN_REDIRECT_URL = 'subscriptions'
+LOGIN_REDIRECT_URL = 'orderitems'
