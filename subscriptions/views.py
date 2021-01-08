@@ -16,9 +16,13 @@ from .models import SubscriptionItem
 def subscriptionView(request):
     current_user = request.user
     subscriptions = SubscriptionItem.objects.filter(user = current_user, item__is_active = True).order_by('item__name')
+    current_total = 0
+    for item in subscriptions:
+        current_total += item.quantity
     context ={
         'current_user': current_user,
-        'subscriptions': subscriptions
+        'subscriptions': subscriptions,
+        'current_total': current_total,
     }
 
     return render(request, 'subscriptions/subform.html', context)
