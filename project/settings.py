@@ -42,7 +42,6 @@ INSTALLED_APPS = [
 
     'users',
     'recipes',
-    'orders',
     'main',
     'subscriptions',
     'meals',
