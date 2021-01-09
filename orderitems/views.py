@@ -21,7 +21,7 @@ def orderItemsView(request):
         'current_total': current_total,
     }
 
-    return render(request, 'orderitems/subform.html', context)
+    return render(request, 'orderitems/menu.html', context)
 
 
 class OrderItemUpdate(LoginRequiredMixin, UpdateView):
