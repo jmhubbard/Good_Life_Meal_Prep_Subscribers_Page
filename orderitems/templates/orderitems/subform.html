@@ -8,12 +8,14 @@
 <h1>Weekly Menu</h1>
 <div class="form-group">
     <table class= "table table-bordered">
+        <th style="font-size: 30px; font-style: italic">Image</th>
         <th style="font-size: 30px; font-style: italic">Food</th>
         <th style="font-size: 30px; font-style: italic">Description</th>
         <th style="font-size: 30px; font-style: italic">Quantity</th>       
         <th style="font-size: 30px; font-style: italic">Edit</th>
         {% for i in order_items %}
         <tr>
+            <td><img src="{{ i.item.picture_url }}" alt="{{ i.item }}" style="max-width: 100%;"></td>
             <td>{{ i.item }}</td>
             <td>{{ i.item.description }} {{i.item.proteins}}C/{{i.item.carbs}}P/{{i.item.fats}}F {{i.item.calories}}CAL</td>
             <td>{{ i.quantity }}</td>
