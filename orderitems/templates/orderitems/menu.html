@@ -13,7 +13,8 @@
         <th style="font-size: 30px; font-style: italic">Image</th>
         <th style="font-size: 30px; font-style: italic">Food</th>
         <th style="font-size: 30px; font-style: italic">Description</th>
-        <th style="font-size: 30px; font-style: italic">Quantity</th>       
+        <th style="font-size: 30px; font-style: italic">Quantity</th>
+        <th style="font-size: 30px; font-style: italic">Special Requests</th>
         <th style="font-size: 30px; font-style: italic">Edit</th>
         {% for i in order_items %}
         <tr>
@@ -21,6 +22,7 @@
             <td>{{ i.item }}</td>
             <td>{{ i.item.description }} {{i.item.proteins}}C/{{i.item.carbs}}P/{{i.item.fats}}F {{i.item.calories}}CAL</td>
             <td>{{ i.quantity }}</td>
+            <td>{{ i.special_requests }}</td>
             <td><a href ="{% url 'orderitem-update' i.id %}" class="btn btn-success btn-sm">Update</a></td>
         </tr>
         {% endfor %}
