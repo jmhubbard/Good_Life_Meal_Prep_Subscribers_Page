@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 fats = item["fats"],
                 calories = item["calories"],
                 picture_url = item["picture_url"],
-                is_active = item["is_active"],
+                is_on_menu = item["is_on_menu"],
             )
             if options["save"]:
                     try:
