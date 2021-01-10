@@ -1,5 +1,13 @@
 from django.contrib import admin
 
-from .models import OrderItem
+from orderitems.models import OrderItem
 
-admin.site.register(OrderItem)
+
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ('user', 'item', 'quantity', 'special_requests', 'is_on_current_menu', 'updated_at')
+    field_display = ('user', 'item', 'quantity', 'special_requests', 'is_on_current_menu', 'updated_at')
+    readonly_fields = ('user', 'item', 'updated_at',)
+    search_fields = ('user', 'item')
+    ordering = ('user',)
+
+admin.site.register(OrderItem, OrderItemAdmin)
