@@ -68,8 +68,11 @@ class OrderItemUpdate(LoginRequiredMixin, UpdateView):
 
         current_user = self.request.user
 
-        if current_user != obj.user:
+        if obj.item.is_on_menu == False or current_user != obj.user:
             raise PermissionDenied
+        
+        # if current_user != obj.user:
+        #     raise PermissionDenied
         
         return obj
 
