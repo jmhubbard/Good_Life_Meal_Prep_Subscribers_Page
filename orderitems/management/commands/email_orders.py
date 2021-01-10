@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 
 from meals.models import Meal
 from meals.meal_list.meal_list import meal_list
-from orderitems.utils import email_test
+from orderitems.utils import emailWeeklyOrders
 
 
 class Command(BaseCommand):
@@ -15,6 +15,5 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         user = "jasonhubb@gmail.com"
-        message = "Test"
 
-        email_test(user, message)
+        emailWeeklyOrders(user)
