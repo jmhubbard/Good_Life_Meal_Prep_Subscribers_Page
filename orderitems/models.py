@@ -7,6 +7,7 @@ class OrderItem(models.Model):
     item = models.ForeignKey(Meal, on_delete=models.CASCADE, related_name='order_item')
     quantity = models.PositiveSmallIntegerField(default=0)
     special_requests = models.TextField(blank=True)
+    is_on_current_menu = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
