@@ -22,8 +22,8 @@ def make_meals_inactive(modeladmin, request, queryset):
 
 class MealAdmin(admin.ModelAdmin):
     actions = [
-        'make_meals_active',
-        'make_meals_inactive',
+        'add_meals_to_menu',
+        'remove_meals_from_menu',
         'create_orderItem'
     ]
 
@@ -37,32 +37,32 @@ class MealAdmin(admin.ModelAdmin):
 
 
 
-    def make_meals_active(self, request, queryset):
+    def add_meals_to_menu(self, request, queryset):
         total = 0
         for meal in queryset:
-            meal.is_active = True
+            meal.is_on_menu = True
             meal.save()
             total+=1
         self.message_user(request, ngettext(
-        '%d meal was successfully made active.',
-        '%d meals were successfully made active.',
+        '%d meal was successfully added to the menu.',
+        '%d meals were successfully added to the menu.',
         total,
     ) % total, messages.SUCCESS)
 
-    def make_meals_inactive(self, request, queryset):
+    def remove_meals_from_menu(self, request, queryset):
         total = 0
         for meal in queryset:
-            meal.is_active = False
+            meal.is_on_menu = False
             meal.save()
             total +=1
         self.message_user(request, ngettext(
-        '%d meal was successfully made inactive.',
-        '%d meals were successfully made inactive.',
+        '%d meal was successfully removed from the menu.',
+        '%d meals were successfully removed from the menu',
         total,
     ) % total, messages.SUCCESS)
 
 
-    list_display = ('is_active', 'name', 'description', 'proteins', 'carbs', 'fats', 'calories')
+    list_display = ('is_on_menu', 'name', 'description', 'proteins', 'carbs', 'fats', 'calories')
     field_display = ('name','description','proteins', 'carbs', 'fats', 'calories', 'created_at', 'updated_at')
     readonly_fields = ('created_at', 'updated_at',)
     search_fields = ('name',)
