@@ -1,0 +1,7 @@
+Test
+{% for order in orders %}
+    - Name:{{ order.name }}
+    - Email:{{ order.email}}
+    {% for meal in order.meals %}   - {{ meal.item }} Quantity: {{ meal.quantity}} Special Request: {{ meal.special_requests}}
+    {% endfor %}
+{% endfor %}
