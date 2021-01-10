@@ -5,7 +5,7 @@ from django.contrib.auth.password_validation import validate_password
 
 from .models import User
 
-class UserForm(forms.ModelForm):
+class UserSignUpForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
     date_of_birth = forms.DateField(widget=forms.SelectDateWidget)

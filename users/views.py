@@ -14,11 +14,11 @@ from django.contrib.auth.views import (
 
 
 from .models import User
-from .forms import UserForm
+from .forms import UserSignUpForm
 
-class UserCreateView(SuccessMessageMixin, CreateView):
+class UserSignUpView(SuccessMessageMixin, CreateView):
     model = User
-    form_class = UserForm
+    form_class = UserSignUpForm
     success_url = "/accounts/login/"
     success_message = "Your account was successfully created. Log in to update your weekly order."
 
