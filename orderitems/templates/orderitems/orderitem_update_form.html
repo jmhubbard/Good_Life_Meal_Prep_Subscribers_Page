@@ -14,6 +14,7 @@
     <div class="form-group"></div>
     {% csrf_token %}
     {{ form.as_p }}
+    <a href ="{% url 'orderitems' %}" class="btn btn-success btn-sm">Cancel</a>
     <input type="submit" value="Update">
     </div>
 </form>
