@@ -8,19 +8,6 @@ from users.models import User
 from orderitems.models import OrderItem
 
 
-def make_meals_active(modeladmin, request, queryset):
-    for meal in queryset:
-        meal.is_active = True
-        meal.save()
-
-def make_meals_inactive(modeladmin, request, queryset):
-    for meal in queryset:
-        meal.is_active = False
-        meal.save()
-
-
-
-
 class MealAdmin(admin.ModelAdmin):
     actions = [
         'add_meals_to_menu',
