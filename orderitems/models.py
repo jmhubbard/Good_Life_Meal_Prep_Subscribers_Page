@@ -19,3 +19,5 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.user}'s order for {self.item}"
+
+

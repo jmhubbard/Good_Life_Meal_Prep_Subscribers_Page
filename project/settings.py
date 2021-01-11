@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'users',
     'main',
     'meals',
-    'orderitems',
+    'orderitems.apps.OrderitemsConfig',
 ]
 
 MIDDLEWARE = [
