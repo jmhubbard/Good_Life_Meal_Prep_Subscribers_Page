@@ -25,18 +25,7 @@ class MealAdmin(admin.ModelAdmin):
     actions = [
         'add_meals_to_menu',
         'remove_meals_from_menu',
-        'create_orderItem'
     ]
-
-    def create_orderItem(self, request, queryset):
-        all_users = User.objects.all()
-        for user in all_users:
-            user_orderItems = user.order_item.all()
-            for meal in queryset:
-                if meal not in user_orderItems:
-                    OrderItem.objects.create(user=user, item=meal)
-
-
 
     def add_meals_to_menu(self, request, queryset):
         total = 0
