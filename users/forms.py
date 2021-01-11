@@ -34,10 +34,4 @@ class UserSignUpForm(forms.ModelForm):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password2"])
         user.save()
-        all_current_meals = Meal.objects.filter(is_on_menu=True)
-        for item in all_current_meals:
-            OrderItem.objects.create(user=user, item=item, is_on_current_menu=True)
-        all_not_current_meals = Meal.objects.filter(is_on_menu=False)
-        for food in all_not_current_meals:
-            OrderItem.objects.create(user=user, item=food, is_on_current_menu=False)
         return user
