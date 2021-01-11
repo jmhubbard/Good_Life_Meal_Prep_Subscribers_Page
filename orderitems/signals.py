@@ -5,7 +5,7 @@ from users.models import User
 from meals.models import Meal
 from .models import OrderItem
 
-def create_order_items(sender, instance, created, **kwargs):
+def create_order_items_for_new_user(sender, instance, created, **kwargs):
 
     if created:
         all_current_meals = Meal.objects.filter(is_on_menu=True)
@@ -16,4 +16,13 @@ def create_order_items(sender, instance, created, **kwargs):
             OrderItem.objects.create(user=instance, item=food, is_on_current_menu=False)
         print("SIGNAL WORKS")
 
-post_save.connect(create_order_items, sender=User)
+post_save.connect(create_order_items_for_new_user, sender=User)
+
+def create_order_items_for_new_meal(sender, instance, created, **kwargs):
+
+    if created:
+        all_users = User.objects.all()
+        for person in all_users:
+            OrderItem.objects.create(user=person, item=instance)
+
+post_save.connect(create_order_items_for_new_meal, sender=Meal)
