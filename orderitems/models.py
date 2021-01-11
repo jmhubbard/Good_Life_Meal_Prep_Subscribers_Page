@@ -11,5 +11,11 @@ class OrderItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        unique_together = (
+            ("user", "item"),
+        )
+
+
     def __str__(self):
         return f"{self.user}'s order for {self.item}"
