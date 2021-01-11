@@ -17,11 +17,11 @@ def email_test(user, message):
     )
 
 def emailWeeklyOrders(user):
-    all_users = User.objects.all()
+    all_users = User.objects.filter(is_active=True)
     orders = []
 
     for customer in all_users:
-        orderItems = OrderItem.objects.filter(user=customer) 
+        orderItems = OrderItem.objects.filter(user=customer, is_on_current_menu=True) 
         order = {"name": customer.name, "email": customer.email, "meals": orderItems}
         orders.append(order)
 
