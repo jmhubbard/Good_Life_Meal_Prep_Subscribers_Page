@@ -137,3 +137,5 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = bool(int(os.getenv('EMAIL_USE_TLS', str(int(True)))))
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
