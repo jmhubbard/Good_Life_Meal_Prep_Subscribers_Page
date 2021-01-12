@@ -9,16 +9,21 @@
 </div>
 
 <div class="form-group">
-    <table class= "table">
-        <th style="font-size: 30px; font-style: italic">Image</th>
-        <th style="font-size: 30px; font-style: italic">Food</th>
-        <th style="font-size: 30px; font-style: italic">Description</th>
-        <th style="font-size: 30px; font-style: italic">Quantity</th>
-        <th style="font-size: 30px; font-style: italic">Special Requests</th>
-        <th style="font-size: 30px; font-style: italic">Edit</th>
+    <table class= "table table-borderless table-sm">
+        <thead>
+            <tr>
+                <th scope="col" style="font-size: 30px; font-style: italic">Image</th>
+                <th scope="col" style="font-size: 30px; font-style: italic">Food</th>
+                <th scope="col" style="font-size: 30px; font-style: italic">Description</th>
+                <th scope="col" style="font-size: 30px; font-style: italic">Quantity</th>
+                <th scope="col" style="font-size: 30px; font-style: italic">Special Requests</th>
+                <th scope="col" style="font-size: 30px; font-style: italic">Edit</th>        
+            </tr>
+        </thead>
+        <tbody>
         {% for i in order_items %}
         <tr>
-            <td><img src="{{ i.item.picture_url }}" alt="{{ i.item }}" style="max-width: 100%;"></td>
+            <th scope="row"><img src="{{ i.item.picture_url }}" alt="{{ i.item }}" style="max-width: 100%;"></td>
             <td>{{ i.item }}</td>
             <td>{{ i.item.description }} {{i.item.proteins}}C/{{i.item.carbs}}P/{{i.item.fats}}F {{i.item.calories}}CAL</td>
             <td>{{ i.quantity }}</td>
@@ -26,6 +31,7 @@
             <td><a href ="{% url 'orderitem-update' i.id %}" class="btn btn-success btn-sm">Update</a></td>
         </tr>
         {% endfor %}
+        </tbody>
     </table>
 </div>
 <h1>Current Total: {{current_total}}</h1>
