@@ -1,16 +1,21 @@
 {% extends 'main/base.html' %}
 
+{% load crispy_forms_tags %}
 
 {% block content %}
-<h1>Profile Page for {{ object.name }}</h1>>
-
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update">
-</form>
-
-
-<a href ="{% url 'password_change' %}" class="btn btn-success btn-sm">Change Password</a>
-<a href ="{% url 'delete_account' object.id %}" class="btn btn-success btn-sm">Delete Account</a>
+<div class="container" style="padding-top: 60px;">
+    <h1>Profile Page for {{ object.name }}</h1>
+</div>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update" class="btn btn-success btn-sm">
+    </form>    
+</div>
+<div class="container">
+    <a href ="{% url 'password_change' %}" class="btn btn-success btn-sm">Change Password</a>
+    <a href ="{% url 'delete_account' object.id %}" class="btn btn-success btn-sm">Delete Account</a>
+</div>
 
 {% endblock %}
