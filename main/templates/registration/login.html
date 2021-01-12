@@ -23,7 +23,7 @@ Login Page
             {{ form.as_p }}
             <input type="submit" value="Login" class="btn btn-lg btn-outline-success" />
         </form>
-        <a href="#">Forgot Password</a>
+        <a href="{%  url 'reset_password' %}">Forgot Password</a>
         {% for message in messages %}
         <div class="alert alert-info" role="alert" id="test">
             <li> {{ message }} </li>
