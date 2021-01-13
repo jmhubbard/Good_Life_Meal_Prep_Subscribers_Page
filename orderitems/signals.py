@@ -14,7 +14,6 @@ def create_order_items_for_new_user(sender, instance, created, **kwargs):
         all_not_current_meals = Meal.objects.filter(is_on_menu=False)
         for food in all_not_current_meals:
             OrderItem.objects.create(user=instance, item=food, is_on_current_menu=False)
-        print("SIGNAL WORKS")
 
 post_save.connect(create_order_items_for_new_user, sender=User)
 
