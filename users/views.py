@@ -18,9 +18,6 @@ from django.http import Http404
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-
-
-
 from django.contrib.auth.views import (
         PasswordChangeView,
         PasswordChangeDoneView,
@@ -32,7 +29,7 @@ from django.contrib.auth.views import (
 
 
 from .models import User
-from .forms import UserSignUpForm
+from .forms import UserSignUpForm, UserUpdateForm, CustomUserPasswordChangeForm
 
 class UserSignUpView(SuccessMessageMixin, CreateView):
     model = User
@@ -46,6 +43,7 @@ class UserSignUpView(SuccessMessageMixin, CreateView):
 
 class CustomPasswordChangeView(PasswordChangeView):
 
+    form_class = CustomUserPasswordChangeForm #Custom form which was copied from django
     template_name = "users/password_change.html"
 
 
@@ -92,7 +90,8 @@ class CustomPasswordResetCompleteView(PasswordResetCompleteView):
 class UserProfileUpdateView(UpdateView):
 
     model = User
-    fields = ["name", "date_of_birth"]
+    form_class = UserUpdateForm
+    # fields = ["name", "date_of_birth"]
     template_name_suffix = '_update_form'
 
     def get_success_url(self):
