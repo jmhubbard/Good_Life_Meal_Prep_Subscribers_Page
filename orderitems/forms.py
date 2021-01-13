@@ -5,6 +5,12 @@ from django.core.exceptions import ValidationError
 
 
 class OrderItemUpdateForm(forms.ModelForm):
+    """
+    A form that allows users to update a specific OrderItem. Widgets are defined for each field
+    so a 'form-control' class can be added to each field to allow for Bootstrap styling. The form
+    validates the the quantity amount and doesn't allow numbers greater than 50.
+    """
+
     class Meta:
         model = OrderItem
         fields = ('quantity', 'special_requests')
@@ -20,4 +26,3 @@ class OrderItemUpdateForm(forms.ModelForm):
             raise forms.ValidationError("Quantity must be less than 50")
         else:
             return quantity
-
