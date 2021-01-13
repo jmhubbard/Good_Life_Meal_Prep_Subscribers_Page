@@ -28,7 +28,11 @@ class UserSignUpForm(forms.ModelForm):
         widgets = {
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'date_of_birth': forms.SelectDateWidget(attrs={'class': 'form-control'})
+            'date_of_birth': forms.DateInput(format="%m/%d/%Y", attrs={'class': 'form-control'})
+        }
+
+        help_texts = {
+            'date_of_birth': 'MM/DD/YYYY',
         }
 
     def clean_email(self):
@@ -59,7 +63,7 @@ class UserUpdateForm(forms.ModelForm):
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'date_of_birth': forms.SelectDateWidget(attrs={'class': 'form-control'}),
+            'date_of_birth': forms.DateInput(format="%m/%d/%Y", attrs={'class': 'form-control'}),
         }
 
 
