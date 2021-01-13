@@ -13,15 +13,16 @@ from django.utils.text import capfirst
 from django.core.exceptions import ValidationError
 
 
-
-
 UserModel = get_user_model()
+
 
 class CustomAuthenticationForm(forms.Form):
     """
-    Base class for authenticating users. Extend this to get a form that accepts
-    username/password logins.
+    A custom authentication class that copys itself from Djangos AuthenticationForm, which is the 
+    form_class used by the generic LoginView. A class of 'form-control' has been added to each widget
+    to allow for Bootstrap styling.
     """
+
     username = UsernameField(widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control'}))
     password = forms.CharField(
         label=_("Password"),
