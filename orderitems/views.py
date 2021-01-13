@@ -7,6 +7,7 @@ from django.core.exceptions import PermissionDenied
 from django.http import Http404
 
 from .models import OrderItem
+from .forms import OrderItemUpdateForm
 
 @login_required()
 def orderItemsView(request):
@@ -26,7 +27,8 @@ def orderItemsView(request):
 
 class OrderItemUpdate(LoginRequiredMixin, UpdateView):
     model = OrderItem
-    fields = ['quantity','special_requests']
+    form_class = OrderItemUpdateForm
+    # fields = ['quantity','special_requests']
     template_name_suffix = '_update_form'
    
     def get_success_url(self):
