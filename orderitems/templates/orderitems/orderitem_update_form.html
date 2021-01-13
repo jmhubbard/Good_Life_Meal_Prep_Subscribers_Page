@@ -8,12 +8,16 @@
     <h2>{{ object.item.name }}</h2>
     <p>{{ object.item.description }}</p>
 </div>
-<div class="container text-center">
+<div class="container">
     <form action="{% url 'orderitem-update' object.id %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <a href="{% url 'orderitems' %}" class="btn btn-success btn-sm">Cancel</a>
-        <input type="submit" value="Update" class="btn btn-success btn-sm">
+        <div class="mb-3">
+            {% csrf_token %}
+            {{ form.as_p }}
+        </div>
+        <div class="container text-end">
+            <a href="{% url 'orderitems' %}" class="btn btn-secondary btn-lg">Cancel</a>
+            <input type="submit" value="Update" class="btn btn-success btn-lg">
+        </div>
     </form>
 </div>
 {% endblock %}
