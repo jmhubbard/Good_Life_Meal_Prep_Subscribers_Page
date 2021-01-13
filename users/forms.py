@@ -5,19 +5,23 @@ from django.contrib.auth.password_validation import validate_password
 
 from django.contrib.auth.forms import SetPasswordForm
 
-from .models import User
-from meals.models import Meal
-from orderitems.models import OrderItem
-
 from django.utils.translation import gettext_lazy as _
 
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
 
-
+from .models import User
+from meals.models import Meal
+from orderitems.models import OrderItem
 
 
 class UserSignUpForm(forms.ModelForm):
+    """
+    A custom form used by UserSignUpView for when an unauthenticated user creates an account.
+    Widgets for each field are assigned so that a bootstrap class of 'form-control' could be added
+    to each widget. The date_of_birth field's input format is set as MM/DD/YYYY in the widget.
+    """
+
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class':'form-control'}))
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
@@ -40,7 +44,6 @@ class UserSignUpForm(forms.ModelForm):
         return email.lower()
         # return email
 
-
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
@@ -57,6 +60,12 @@ class UserSignUpForm(forms.ModelForm):
 
 
 class UserUpdateForm(forms.ModelForm):
+    """
+    A custom form used by UserProfileUpdateView to allow authenticated users to update their profile
+    information. Widgets for each field are assigned so that a bootstrap class of 'form-control'
+    could be added to each widget. The date_of_birth field's input format is set as MM/DD/YYYY in the widget.
+    """
+
     class Meta:
         model = User
         fields = ('name', 'date_of_birth')
@@ -71,8 +80,11 @@ class UserUpdateForm(forms.ModelForm):
 class CustomUserSetPasswordForm(forms.Form):
     """
     A form that lets a user change set their password without entering the old
-    password
+    password. This was copied over from SetPasswordForm, which is used by the class_form = PasswordChangeForm that is used
+    by the generic PasswordChangeView. This was copied over so that the bootstrap class 'form-control' could be added
+    to each widget to allow for bootstrap styling.
     """
+
     error_messages = {
         'password_mismatch': _('The two password fields didn’t match.'),
     }
@@ -115,8 +127,11 @@ class CustomUserSetPasswordForm(forms.Form):
 class CustomUserPasswordChangeForm(CustomUserSetPasswordForm):
     """
     A form that lets a user change their password by entering their old
-    password.
+    password. This was copied from the PasswordChangeForm, which is the class_form for the generic
+    PasswordChangeView. This was copied over so that the bootstrap class 'form-control' could be added
+    to each widget to allow for bootstrap styling.
     """
+
     error_messages = {
         **SetPasswordForm.error_messages,
         'password_incorrect': _("Your old password was entered incorrectly. Please enter it again."),
