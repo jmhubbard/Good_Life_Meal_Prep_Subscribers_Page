@@ -32,6 +32,11 @@ from .models import User
 from .forms import UserSignUpForm, UserUpdateForm, CustomUserPasswordChangeForm
 
 class UserSignUpView(SuccessMessageMixin, CreateView):
+    """
+    A View to allow users to sign up for a new account.
+    Authenticated users will be redirected to the menu page.
+    """
+
     model = User
     form_class = UserSignUpForm
     success_url = "/accounts/login/"
@@ -41,17 +46,29 @@ class UserSignUpView(SuccessMessageMixin, CreateView):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
+
 class CustomPasswordChangeView(PasswordChangeView):
+    """
+    A View that allows users to change their password.
+    """
 
     form_class = CustomUserPasswordChangeForm #Custom form which was copied from django
     template_name = "users/password_change.html"
 
 
 class CustomPasswordChangeDoneView(PasswordChangeDoneView):
+    """
+    A view that is displayed after after a user changes their password.
+    """
+
     template_name = "users/password_change_done.html"
 
 
 class CustomPasswordResetView(PasswordResetView):
+    """
+    A view that allows unauthenticated users to reset their password via email.
+    Authenticated users will be redirected to the menu page.
+    """
 
     template_name = "users/password_reset.html"
 
@@ -61,6 +78,10 @@ class CustomPasswordResetView(PasswordResetView):
 
 
 class CustomPasswordResetDoneView(PasswordResetDoneView):
+    """
+    A view that is displayed after an unauthenticated user enters their email for a password reset.
+    Authenticated users will be redirected to the menu page.
+    """
 
     template_name = "users/password_reset_sent.html"
 
@@ -70,6 +91,10 @@ class CustomPasswordResetDoneView(PasswordResetDoneView):
 
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    """
+    A view this is displayed once an unauthenticated user clicks the link in their email to reset their password.
+    Authenticated users will be redirected to the menu page.
+    """
 
     template_name = "users/password_reset_form.html"
 
@@ -79,6 +104,10 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 
 
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    """
+    A view that is displayed once an unauthenticated user succesfully resets their password.
+    Authenticated users will be redirected to the menu page.
+    """
 
     template_name = "users/password_reset_done.html"
 
@@ -88,6 +117,9 @@ class CustomPasswordResetCompleteView(PasswordResetCompleteView):
 
 
 class UserProfileUpdateView(UpdateView):
+    """
+    A view that allows authenticated users to update their profile information.
+    """
 
     model = User
     form_class = UserUpdateForm
@@ -142,8 +174,11 @@ class UserProfileUpdateView(UpdateView):
         return obj
 
 class UserDeleteView(LoginRequiredMixin, DeleteView):
+    """
+    A view that allows authenticated users to delete their accounts.
+    """
+
     model = User
-    
     success_url = reverse_lazy('home')
 
     def get_object(self, queryset=None):
