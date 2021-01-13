@@ -2,12 +2,14 @@
 
 
 {% block content %}
-
-<div class="form-group">
-    <form method="post">{% csrf_token %}
+<div class="container" style="padding-top: 60px;">
+<div class="mb-3">
+    <form method="post">
+        {% csrf_token %}
         <p>Are you sure you want to delete "{{ object }}"?</p>
         <input type="submit" class="btn btn-danger" value="Confirm">
     </form>
+</div>
 </div>
 {% endblock %}
 
