@@ -11,6 +11,11 @@ from .forms import OrderItemUpdateForm
 
 @login_required()
 def orderItemsView(request):
+    """
+    A view that allows authenticated users the ability to view all of their Order Items that are
+    currently on the menu.
+    """
+    
     current_user = request.user
     order_items = OrderItem.objects.filter(user = current_user, item__is_on_menu = True).order_by('item__name')
     current_total = 0
@@ -26,14 +31,17 @@ def orderItemsView(request):
 
 
 class OrderItemUpdate(LoginRequiredMixin, UpdateView):
+    """
+    A view to allow authenticated users the ability to update one of their OrderItems as long
+    as the OrderItem.is_on_menu == True
+    """
+
     model = OrderItem
     form_class = OrderItemUpdateForm
-    # fields = ['quantity','special_requests']
     template_name_suffix = '_update_form'
    
     def get_success_url(self):
         return reverse('orderitems')
-
 
     def get_object(self, queryset=None):
         """
@@ -45,7 +53,6 @@ class OrderItemUpdate(LoginRequiredMixin, UpdateView):
         # like DateDetailView
         if queryset is None:
             queryset = self.get_queryset()
-
         # Next, try looking up by primary key.
         pk = self.kwargs.get(self.pk_url_kwarg)
         slug = self.kwargs.get(self.slug_url_kwarg)
@@ -72,9 +79,6 @@ class OrderItemUpdate(LoginRequiredMixin, UpdateView):
 
         if obj.item.is_on_menu == False or current_user != obj.user:
             raise PermissionDenied
-        
-        # if current_user != obj.user:
-        #     raise PermissionDenied
         
         return obj
 
