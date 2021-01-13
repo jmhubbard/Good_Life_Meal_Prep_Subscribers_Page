@@ -8,14 +8,32 @@
 </div>
 <div class="container">
     <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Update" class="btn btn-success btn-sm">
+        <div class="mb-3">
+            {% csrf_token %}
+            {{ form.as_p }}    
+        </div>
+        <div class="container text-end">
+            <input type="submit" value="Update" class="btn btn-success btn-md">
+        </div>
     </form>    
 </div>
-<div class="container">
-    <a href ="{% url 'password_change' %}" class="btn btn-success btn-sm">Change Password</a>
-    <a href ="{% url 'delete_account' object.id %}" class="btn btn-success btn-sm">Delete Account</a>
+<hr>
+<div class="container text-end">
+    <a href ="{% url 'password_change' %}" class="btn btn-success btn-md">Change Password</a>
+    <a href ="{% url 'delete_account' object.id %}" class="btn btn-success btn-md">Delete Account</a>
 </div>
 
 {% endblock %}
+
+<div class="container">
+    <form action="{% url 'orderitem-update' object.id %}" method="post">
+        <div class="mb-3">
+            {% csrf_token %}
+            {{ form.as_p }}
+        </div>
+        <div class="container text-end">
+            <a href="{% url 'orderitems' %}" class="btn btn-secondary btn-lg">Cancel</a>
+            <input type="submit" value="Update" class="btn btn-success btn-lg">
+        </div>
+    </form>
+</div>
