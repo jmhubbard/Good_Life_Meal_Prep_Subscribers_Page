@@ -16,9 +16,11 @@ Login Page
 
 <div class="container text-center" style="padding-top: 60px;">
     <h1>Login Page</h1>
-    <p class="lead">Log in to your account to update your subscription preferences.</p>
-    <div>
-        <form method="post" action="{% url 'login' %}">
+    <p>Log in to your account to select your weekly meals.</p>
+</div>
+<div class="container">
+    <div class="mb-3">
+        <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Login" class="btn btn-lg btn-outline-success" />
@@ -33,6 +35,3 @@ Login Page
 </div>
 
 {% endblock %}
-
-
-
