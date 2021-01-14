@@ -4,17 +4,17 @@
 
 {% block content %}
 <div class="container text-center" style="padding-top: 60px;">
-    <img src="{{ object.item.picture_url }}" alt="{{ i.item }}" style="max-width: 100%;">
+    <img src="{{ object.item.large_picture_url }}" alt="{{ i.item }}" style="max-width: 100%;">
     <h2>{{ object.item.name }}</h2>
     <p>{{ object.item.description }}</p>
 </div>
 <div class="container">
     <form action="{% url 'orderitem-update' object.id %}" method="post">
-        <div class="mb-3">
+        <div class="mb-3 col-4 mx-auto">
             {% csrf_token %}
             {{ form.as_p }}
         </div>
-        <div class="container text-end">
+        <div class="container  col-4 text-end">
             <a href="{% url 'orderitems' %}" class="btn btn-secondary btn-lg">Cancel</a>
             <input type="submit" value="Update" class="btn btn-success btn-lg">
         </div>
