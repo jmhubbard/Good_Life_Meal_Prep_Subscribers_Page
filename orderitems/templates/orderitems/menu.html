@@ -7,6 +7,7 @@
         your order it by Thursday.</p>
 </div>
 
+{% if order_items|length > 0 %}
 <div class="container">
     <div class="form-group">
         <table class="table table-borderless table-sm">
@@ -42,5 +43,10 @@
         <h1>Meal Total: {{current_total}}</h1>
     </div>
 </div>
+{% else %}
+<div class="container" style="padding-top: 30px;">
+    <h3>You're too late! Ordering for this weeks menu is already over. Please stop by next to place your orders!</h3>
+</div>
+{% endif %}
 
 {% endblock %}
