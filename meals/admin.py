@@ -53,7 +53,7 @@ class MealAdmin(admin.ModelAdmin):
 
 
     list_display = ('is_on_menu','name', 'description', 'proteins', 'carbs', 'fats', 'calories')
-    field_display = ('name','description','proteins', 'carbs', 'fats', 'calories', 'created_at', 'updated_at')
+    field_display = ('name','description','proteins', 'carbs', 'fats', 'calories', 'small_picture_url', 'large_picture_url', 'created_at', 'updated_at')
     readonly_fields = ('created_at', 'updated_at', 'is_on_menu')
     search_fields = ('name',)
     ordering = ('name',)
