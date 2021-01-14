@@ -16,6 +16,7 @@ from django.http import Http404
 
 
 
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib.auth.views import (
@@ -29,7 +30,7 @@ from django.contrib.auth.views import (
 
 
 from .models import User
-from .forms import UserSignUpForm, UserUpdateForm, CustomUserPasswordChangeForm
+from .forms import UserSignUpForm, UserUpdateForm, CustomUserPasswordChangeForm, CustomPasswordResetForm
 
 class UserSignUpView(SuccessMessageMixin, CreateView):
     """
@@ -69,7 +70,7 @@ class CustomPasswordResetView(PasswordResetView):
     A view that allows unauthenticated users to reset their password via email.
     Authenticated users will be redirected to the menu page.
     """
-
+    form_class = CustomPasswordResetForm
     template_name = "users/password_reset.html"
 
     @method_decorator(unauthenticated_user) #If user is already authenticated they will be redirected to their subscription page
