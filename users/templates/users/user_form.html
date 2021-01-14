@@ -2,14 +2,25 @@
 
 {% block content %}
 <div class="container" style="padding-top: 60px;">
-    <h1>Sign Up Page</h1>
-    <p>Praesent nizzle mi non maurizzle posuere bibendum. Aliquizzle sheezy viverra lectizzle. Ma nizzle izzle enim et leo sodalizzle yippiyo. Aliquizzle lobortizzle, maurizzle crunk dapibizzle away, nulla ligula bibendizzle shizzle my nizzle crocodizzle, izzle venenatis augue my shizz funky fresh arcu. Vivamus mofo lacizzle id ipsizzle. Vivamizzle get down get down break it down, fermentizzle rizzle amizzle, faucibus mofo, placerat izzle, sure. Sed vehicula laoreet dawg. Vestibulizzle erizzle diam, shizzle my nizzle crocodizzle izzle, condimentum ac, malesuada a, arcu. Morbi its fo rizzle placerizzle nulla.</p>
-</div>
+    <div class="col-6">
+        <h1>Sign Up Page</h1>
+        <p class="lead">Praesent nizzle mi non maurizzle posuere bibendum. Aliquizzle sheezy viverra lectizzle. Ma nizzle izzle enim et
+            leo sodalizzle yippiyo. Aliquizzle lobortizzle, maurizzle crunk dapibizzle away, nulla ligula bibendizzle
+            shizzle my nizzle crocodizzle, izzle venenatis augue my shizz funky fresh arcu. Vivamus mofo lacizzle id
+            ipsizzle. Vivamizzle get down get down break it down, fermentizzle rizzle amizzle, faucibus mofo, placerat
+            izzle, sure. Sed vehicula laoreet dawg. Vestibulizzle erizzle diam, shizzle my nizzle crocodizzle izzle,
+            condimentum ac, malesuada a, arcu. Morbi its fo rizzle placerizzle nulla.</p>
+    </div>
+        </div>
 <div class="container">
     <form action="/accounts/create/" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit" class="btn btn-success btn-sm">
+        <div class="mb-3 col-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="container text-end">
+                <input type="submit" value="Submit" class="btn btn-success btn-sm">
+            </div>
+        </div>
     </form>
     {% for message in messages %}
     <li> {{ message }} </li>

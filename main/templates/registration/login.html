@@ -19,13 +19,17 @@ Login Page
     <p>Log in to your account to select your weekly meals.</p>
 </div>
 <div class="container">
-    <div class="mb-3">
+    <div class="mb-3 col-4 mx-auto">
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Login" class="btn btn-lg btn-outline-success" />
+            <div class="container text-center">
+                <input type="submit" value="Login" class="btn btn-lg btn-outline-success" />
+            </div>
+            <div class="container text-center">
+                <a href="{%  url 'reset_password' %}">Forgot Password</a>
+            </div>
         </form>
-        <a href="{%  url 'reset_password' %}">Forgot Password</a>
         {% for message in messages %}
         <div class="alert alert-info" role="alert" id="test">
             <li> {{ message }} </li>
