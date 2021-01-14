@@ -46,15 +46,19 @@ class UserSignUpForm(forms.ModelForm):
         model = User
         fields = ('email','name', 'date_of_birth')
 
+        years = []
+        for year in range(1900,2022):
+            years.append(year)
+        
         widgets = {
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'date_of_birth': forms.DateInput(format="%m/%d/%Y", attrs={'class': 'form-control'})
+            'date_of_birth': forms.SelectDateWidget(years=years, attrs={'class': 'form-control'})
         }
 
-        help_texts = {
-            'date_of_birth': 'MM/DD/YYYY',
-        }
+        # help_texts = {
+        #     'date_of_birth': 'MM/DD/YYYY',
+        # }
 
     def clean_email(self):
         email = self.cleaned_data['email']
