@@ -8,7 +8,9 @@ class Meal(models.Model):
     carbs = models.PositiveSmallIntegerField(null=True, blank=True)
     fats = models.PositiveSmallIntegerField(null=True, blank=True)
     calories = models.PositiveSmallIntegerField(null=True, blank=True)
-    picture_url = models.URLField(null=True, blank=True)
+    small_picture_url = models.URLField(null=True, blank=True)
+    large_picture_url = models.URLField(null=True, blank=True)
+
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
