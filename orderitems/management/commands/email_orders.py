@@ -14,6 +14,5 @@ class Command(BaseCommand):
     help = 'Emails admin an email containing the weekly orders'
 
     def handle(self, *args, **options):
-        user = "jasonhubb@gmail.com"
 
-        emailWeeklyOrders(user)
+        emailWeeklyOrders()

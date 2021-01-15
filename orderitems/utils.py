@@ -16,7 +16,7 @@ def email_test(user, message):
         fail_silently=False,
     )
 
-def emailWeeklyOrders(user):
+def emailWeeklyOrders():
     all_users = User.objects.filter(is_active=True)
     orders = []
 
@@ -32,9 +32,9 @@ def emailWeeklyOrders(user):
 
     
     send_mail(
-        'Weekly Email',
+        'Weekly Orders Email',
         message_text,
         os.getenv("EMAIL_HOST_USER"),
-        [user],
+        [os.getenv("EMAIL_HOST_USER")],
         fail_silently=False,
     )
