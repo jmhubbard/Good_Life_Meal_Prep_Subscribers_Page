@@ -8,13 +8,10 @@ Login Page
 
 {% block content %}
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
 
 <div class="container text-center firstElement">
     <h1>Login Page</h1>
-    <p>Log in to your account to select your weekly meals.</p>
+    <p class="bodyText">Log in to your account to select your weekly meals.</p>
 </div>
 <div class="container">
     <div class="mb-3 col-4 mx-auto" style="color: rgb(86, 135, 145);">
@@ -33,6 +30,9 @@ Login Page
             <li> {{ message }} </li>
         </div>
         {% endfor %}
+        <div class="container text-center">
+            <a href="{%  url 'home' %}" class="bodyText">Click Here to Sign Up</a>
+        </div>
     </div>
 </div>
 
