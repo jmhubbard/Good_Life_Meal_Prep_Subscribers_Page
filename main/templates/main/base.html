@@ -11,13 +11,13 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/starter-template/">
 
-
-
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    
+
     {% load static %}
+    <link rel='stylesheet' href="{% static 'main/css/main.css' %}">
+
     
     <style>
         .bd-placeholder-img {
@@ -35,19 +35,19 @@
         }
 
         body {
-            padding-top: 5rem;
+            /* padding-top: 5rem; */
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-light bg-white" style="border-bottom: 2px solid gray;">
+        <div class="container">
             <a class="navbar-brand" href="https://www.thegoodlifemealprep.com/"><img
-                    src="https://static.wixstatic.com/media/124f25_ec6cca88624b4a35aec3d2ded262f0f6~mv2.png/v1/crop/x_0,y_0,w_1000,h_873/fill/w_134,h_116,al_c,q_85,usm_0.66_1.00_0.01/Logo2_0.webp"
+                    src="https://static.wixstatic.com/media/156e5d_7968f61ab6494435b1b65017f843a0b2~mv2_d_2170_1791_s_2.png/v1/crop/x_50,y_0,w_2070,h_1791/fill/w_166,h_142,al_c,q_85,usm_0.66_1.00_0.01/LAS%20VEGAS%20MEAL%20PREP.webp"
                     class="d-inline-block align-top"
-                    width="75"
-                    height="75"></a>
+                    width="166"
+                    height="142"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -80,22 +80,42 @@
             </div>
             {% else %}
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+                <ul class="navbar-nav me-auto mb-2 mb-md-0 align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 fw-bold" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav mx-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-link fs-5 fw-bold" href="https://www.thegoodlifemealprep.com/">Home</a>
+                    </li>
+                    <span class="navbar-text fs-5">|</span>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 fw-bold" href="https://www.thegoodlifemealprep.com/about">About</a>
+                    </li>
+                    <span class="navbar-text fs-5">|</span>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 fw-bold" href="https://www.thegoodlifemealprep.com/faq-s">FAQ's</a>
+                    </li>
+                    <span class="navbar-text fs-5">|</span>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 fw-bold" href="https://www.thegoodlifemealprep.com/book-online">Cooking Classes
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav justify-content-end align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 fw-bold" href="{% url 'login' %}">Member's Login</a>
                     </li>
                 </ul>
             </div>
             {% endif %}
         </div>
     </nav>
+    
 
     <main>
+
         {% block content %}
         {% endblock content %}
     </main><!-- /.container -->
