@@ -1,0 +1,20 @@
+.firstElement {
+    padding-top: 30px;
+    color: rgb(86, 135,145);
+}
+
+.signUpButton {
+    background-color: rgb(29, 242,157);
+}
+
+.bodyText {
+    color: #92BCEB;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(86, 135, 145);
+}
+
+.navbar-light .navbar-text {
+    color: lightgrey;
+}
