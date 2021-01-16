@@ -7,6 +7,10 @@
     background-color: rgb(29, 242,157);
 }
 
+.letterText {
+    color: rgb(86, 135,145);
+}
+
 .bodyText {
     color: #92BCEB;
 }
@@ -18,3 +22,5 @@
 .navbar-light .navbar-text {
     color: lightgrey;
 }
+
+
