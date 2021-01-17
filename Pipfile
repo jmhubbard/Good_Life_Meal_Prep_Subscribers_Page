@@ -12,6 +12,7 @@ django-extensions = "*"
 django-crispy-forms = "*"
 django-phonenumber-field = "*"
 phonenumbers = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
