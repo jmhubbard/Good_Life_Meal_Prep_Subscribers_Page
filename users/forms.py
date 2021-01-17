@@ -29,6 +29,8 @@ from .models import User
 from meals.models import Meal
 from orderitems.models import OrderItem
 
+import datetime
+
 UserModel = get_user_model()
 
 
@@ -39,21 +41,20 @@ class UserSignUpForm(forms.ModelForm):
     to each widget. The date_of_birth field's input format is set as MM/DD/YYYY in the widget.
     """
 
+    years = []
+    for year in range(1900,2022):
+        years.append(year)
+
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class':'form-control'}))
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(attrs={'class':'form-control'}))
-
+    date_of_birth = forms.DateField(initial= datetime.date.today(), widget=forms.SelectDateWidget(years=years, attrs={'class': 'form-control'}))
     class Meta:
         model = User
         fields = ('email','name', 'date_of_birth')
 
-        years = []
-        for year in range(1900,2022):
-            years.append(year)
-        
         widgets = {
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'date_of_birth': forms.SelectDateWidget(years=years, attrs={'class': 'form-control'})
         }
 
         # help_texts = {
