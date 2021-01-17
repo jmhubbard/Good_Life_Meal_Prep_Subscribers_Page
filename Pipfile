@@ -10,7 +10,6 @@ pylint = "*"
 django = "*"
 django-extensions = "*"
 django-crispy-forms = "*"
-django-phonenumber-field = "*"
 phonenumbers = "*"
 
 [requires]
