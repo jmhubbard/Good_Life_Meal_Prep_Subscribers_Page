@@ -45,6 +45,11 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+    NEVADA = 'NV'
+    states = [
+        (NEVADA, 'Nevada'),
+    ]
+
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -53,6 +58,10 @@ class User(AbstractBaseUser):
     name = models.CharField(max_length=255)
     date_of_birth = models.DateField()
     phone_number = PhoneNumberField()
+    street_address = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    state = models.CharField(max_length=255, choices=states)
+    zip_code = models.CharField(max_length=6)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)

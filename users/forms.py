@@ -53,12 +53,16 @@ class UserSignUpForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email','name', 'date_of_birth', 'phone_number')
+        fields = ('email','name', 'date_of_birth', 'phone_number', 'street_address', 'city', 'state', 'zip_code')
 
         widgets = {
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'street_address': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'state': forms.Select(attrs={'class': 'form-control'}),
+            'zip_code': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
     def clean_email(self):
