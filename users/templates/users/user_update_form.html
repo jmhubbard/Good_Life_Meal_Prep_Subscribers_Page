@@ -3,24 +3,24 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container" style="padding-top: 60px;">
+<div class="container text-center firstElement col">
     <h1>Profile Page for {{ object.name }}</h1>
 </div>
 <div class="container">
-    <form method="POST">
-        <div class="mb-3 col-4">
+    <div class="mb-3 col-md-6 mx-auto letterText">
+        <form method="POST">
             {% csrf_token %}
-            {{ form.as_p }}    
-        </div>
-        <div class="container text-end">
-            <input type="submit" value="Update" class="btn btn-success btn-md">
-        </div>
-    </form>    
+            {{ form.as_p }}
+            <div class="container text-center">
+                <input type="submit" value="Update" class="btn btn-success btn-md">
+            </div>
+        </form>
+    </div>
 </div>
 <hr>
-<div class="container text-end">
-    <a href ="{% url 'password_change' %}" class="btn btn-warning btn-md">Change Password</a>
-    <a href ="{% url 'delete_account' object.id %}" class="btn btn-danger btn-md">Delete Account</a>
+<div class="container text-center">
+    <a href="{% url 'password_change' %}" class="btn btn-warning btn-md">Change Password</a>
+    <a href="{% url 'delete_account' object.id %}" class="btn btn-danger btn-md">Delete Account</a>
 </div>
 
 {% endblock %}
