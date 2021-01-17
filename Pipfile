@@ -10,7 +10,6 @@ pylint = "*"
 django = "*"
 django-extensions = "*"
 django-crispy-forms = "*"
-phonenumbers = "*"
 
 [requires]
 python_version = "3.8"
