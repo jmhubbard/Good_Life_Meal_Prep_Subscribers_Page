@@ -3,10 +3,12 @@
 
 
 {% block content %}
-<div class="container text-center" style="padding-top: 60px;">
+<div class="container text-center firstElement col-5">
     <img src="{{ object.item.large_picture_url }}" alt="{{ i.item }}" style="max-width: 100%;">
     <h2>{{ object.item.name }}</h2>
     <p>{{ object.item.description }}</p>
+    <p>{{object.item.proteins}}C/{{object.item.carbs}}P/{{object.item.fats}}F
+        {{object.item.calories}}CAL</p>
 </div>
 <div class="container">
     <form action="{% url 'orderitem-update' object.id %}" method="post">
