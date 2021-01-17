@@ -31,6 +31,8 @@ from orderitems.models import OrderItem
 
 import datetime
 
+from django.core.validators import RegexValidator
+
 UserModel = get_user_model()
 
 
@@ -48,18 +50,16 @@ class UserSignUpForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class':'form-control'}))
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(attrs={'class':'form-control'}))
     date_of_birth = forms.DateField(initial= datetime.date.today(), widget=forms.SelectDateWidget(years=years, attrs={'class': 'form-control'}))
+
     class Meta:
         model = User
-        fields = ('email','name', 'date_of_birth')
+        fields = ('email','name', 'date_of_birth', 'phone_number')
 
         widgets = {
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
         }
-
-        # help_texts = {
-        #     'date_of_birth': 'MM/DD/YYYY',
-        # }
 
     def clean_email(self):
         email = self.cleaned_data['email']
