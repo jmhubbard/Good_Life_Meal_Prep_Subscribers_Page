@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container text-center firstElement col-6">
+<div class="container text-center firstElement col-md-6">
     <h1>Sign Up Page</h1>
     <p class="bodyText">Praesent nizzle mi non maurizzle posuere bibendum. Aliquizzle sheezy viverra lectizzle. Ma nizzle
         izzle enim et
@@ -14,7 +14,7 @@
         condimentum ac, malesuada a, arcu. Morbi its fo rizzle placerizzle nulla.</p>
 </div>
 <div class="container">
-    <div class="mb-3 col-5 mx-auto letterText">
+    <div class="mb-3 col-md-6 mx-auto letterText">
         <form action="/accounts/create/" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
