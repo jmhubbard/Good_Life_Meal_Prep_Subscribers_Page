@@ -18,6 +18,7 @@ from django.urls import include, path
 from main.views import HomePageView
 
 admin.site.site_header = "The Good Life Meal Prep Admin Page"
+admin.site.site_title = "The Good Life Meal Prep"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
