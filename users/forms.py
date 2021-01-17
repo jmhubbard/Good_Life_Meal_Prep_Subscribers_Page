@@ -35,6 +35,11 @@ from django.core.validators import RegexValidator
 
 UserModel = get_user_model()
 
+years = []
+for year in range(1900,2022):
+    years.append(year)
+
+
 
 class UserSignUpForm(forms.ModelForm):
     """
@@ -43,13 +48,10 @@ class UserSignUpForm(forms.ModelForm):
     to each widget. The date_of_birth field's input format is set as MM/DD/YYYY in the widget.
     """
 
-    years = []
-    for year in range(1900,2022):
-        years.append(year)
 
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class':'form-control'}))
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(attrs={'class':'form-control'}))
-    date_of_birth = forms.DateField(initial= datetime.date.today(), widget=forms.SelectDateWidget(years=years, attrs={'class': 'form-control'}))
+    date_of_birth = forms.DateField(label='Birthday', initial= datetime.date.today(), widget=forms.SelectDateWidget(years=years, attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
@@ -94,12 +96,18 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('name', 'date_of_birth')
+        fields = ('name', 'date_of_birth', 'phone_number', 'street_address', 'city', 'state', 'zip_code')
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'date_of_birth': forms.DateInput(format="%m/%d/%Y", attrs={'class': 'form-control'}),
+            'date_of_birth': forms.SelectDateWidget(years=years, attrs={'class': 'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'street_address': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'state': forms.Select(attrs={'class': 'form-control'}),
+            'zip_code': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
 
 
 #Copied from SetPasswordForm
