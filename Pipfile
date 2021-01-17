@@ -13,6 +13,7 @@ django-crispy-forms = "*"
 django-phonenumber-field = "*"
 phonenumbers = "*"
 gunicorn = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.8"
