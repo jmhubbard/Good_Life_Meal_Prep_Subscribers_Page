@@ -1,20 +1,16 @@
 {% extends 'main/base.html' %}
 
-{% block title%}
-Login Page
-{% endblock title %}
-
 {% load static %}
 
 {% block content %}
 
 
-<div class="container text-center firstElement">
+<div class="container text-center firstElement col">
     <h1>Login Page</h1>
     <p class="bodyText">Log in to your account to select your weekly meals.</p>
 </div>
 <div class="container">
-    <div class="mb-3 col-4 mx-auto" style="color: rgb(86, 135, 145);">
+    <div class="mb-3 col-md-6 mx-auto letterText">
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             {{ form.as_p }}
