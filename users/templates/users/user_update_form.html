@@ -12,6 +12,7 @@
             {% csrf_token %}
             {{ form.as_p }}
             <div class="container text-center">
+                <a href="{% url 'orderitems' %}" class="btn btn-secondary btn-md">Cancel</a>
                 <input type="submit" value="Update" class="btn btn-success btn-md">
             </div>
         </form>
