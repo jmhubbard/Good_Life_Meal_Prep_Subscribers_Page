@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import include, path
 from main.views import HomePageView
 
+admin.site.site_header = "The Good Life Meal Prep Admin Page"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('users.urls')),
