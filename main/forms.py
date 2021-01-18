@@ -117,7 +117,7 @@ class ContactForm(forms.Form):
 
         recipient_list = [os.getenv("EMAIL_HOST_USER")]
         
-        mailmessage = (f'Sender: {current_user.name}\nEmail: {current_user.email}\nMessage: {message}')
+        mailmessage = (f'Sender: {current_user.name}\nEmail: {current_user.email}\nSubject: {subject}\nMessage: {message}')
 
         send_mail(
             f'The Good Life Meal Prep Subscribers Comment Form: {subject}',
