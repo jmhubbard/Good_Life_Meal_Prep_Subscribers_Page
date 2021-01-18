@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from main.views import HomePageView
+from main.views import HomePageView, ContactFormView
 
 admin.site.site_header = "The Good Life Meal Prep Admin Page"
 admin.site.site_title = "The Good Life Meal Prep"
@@ -25,4 +25,5 @@ urlpatterns = [
     path('accounts/', include('users.urls')),
     path('', HomePageView.as_view(), name='home'),
     path('menu/', include('orderitems.urls')),
+    path('contact_form', ContactFormView.as_view(), name='contact_form')
 ]

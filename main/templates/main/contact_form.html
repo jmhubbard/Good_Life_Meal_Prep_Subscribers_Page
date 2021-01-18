@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+<div class="container text-center col-md-6 firstElement">
+    <h1>Contact Form</h1>
+    <p>If you are having an issue with the service or have any comments that you would like us to know,
+        fill out the contact form below and someone will respond shortly.
+    </p>
+    {% for message in messages %}
+    <div class="alert alert-info" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+<div class="container">
+    <div class="mb-3 col-md-6 mx-auto letterText">
+        <form action="{% url 'contact_form' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="container text-center">
+                <input type="submit" value="Submit" class="btn btn-lg col-6 btn-outline-primary">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -12,6 +12,10 @@ from django.utils.text import capfirst
 
 from django.core.exceptions import ValidationError
 
+from django.core.mail import send_mail
+import os
+
+
 
 UserModel = get_user_model()
 
@@ -93,4 +97,32 @@ class CustomAuthenticationForm(forms.Form):
             self.error_messages['invalid_login'],
             code='invalid_login',
             params={'username': self.username_field.verbose_name},
+        )
+
+class ContactForm(forms.Form):
+    subjectchoices = (
+        ('Problems updating my order','Problems updating my order'),
+        ("Issues updating my account information", "Issues updating my account information"),
+        ('Cancel this weeks order','Cancel this weeks order'),
+        ('Cancel my current membership','Cancel my current membership'),
+        ('Other','Other')
+    )
+
+    subject = forms.ChoiceField(choices= subjectchoices, widget=forms.Select(attrs={'class': 'form-control'}))
+    message = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+    
+    def send_message(self, current_user):
+        subject = self.cleaned_data['subject']
+        message = self.cleaned_data['message']
+
+        recipient_list = [os.getenv("EMAIL_HOST_USER")]
+        
+        mailmessage = (f'Sender: {current_user.name}\nEmail: {current_user.email}\nMessage: {message}')
+
+        send_mail(
+            f'The Good Life Meal Prep Subscribers Comment Form: {subject}',
+            mailmessage,
+            os.getenv("EMAIL_HOST_USER"),
+            recipient_list,
+            fail_silently=False
         )
