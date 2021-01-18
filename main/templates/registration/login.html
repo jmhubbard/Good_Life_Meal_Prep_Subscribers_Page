@@ -5,9 +5,12 @@
 {% block content %}
 
 
-<div class="container text-center firstElement col">
+<div class="container text-center firstElement col-md-6">
     <h1>Login Page</h1>
     <p class="bodyText">Log in to your account to select your weekly meals.</p>
+    {% for message in messages %}
+    <div class="alert alert-info" role="alert">{{ message }}</div>
+    {% endfor %}
 </div>
 <div class="container">
     <div class="mb-3 col-md-6 mx-auto letterText">
@@ -21,11 +24,6 @@
                 <a href="{%  url 'reset_password' %}" class="bodyText">Forgot Password</a>
             </div>
         </form>
-        {% for message in messages %}
-        <div class="alert alert-info" role="alert" id="test">
-            <li> {{ message }} </li>
-        </div>
-        {% endfor %}
         <div class="container text-center">
             <a href="{%  url 'home' %}" class="bodyText">Click Here to Sign Up</a>
         </div>
