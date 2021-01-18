@@ -24,5 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('users.urls')),
     path('', HomePageView.as_view(), name='home'),
-    path('menu', include('orderitems.urls')),
+    path('menu/', include('orderitems.urls')),
 ]
