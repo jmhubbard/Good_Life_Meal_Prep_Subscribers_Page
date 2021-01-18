@@ -9,7 +9,7 @@ from .views import (UserSignUpView, CustomPasswordChangeView,
 urlpatterns = [
     path('login/', UserLoginView.as_view(), name="login"),
     path('logout/' , UserLogoutView.as_view(), name='logout'),
-    path('create/', UserSignUpView.as_view(), name="user_sign_up"),
+    path('user_sign_up/', UserSignUpView.as_view(), name="user_sign_up"),
     path('change_password/', CustomPasswordChangeView.as_view(), name='password_change'),
     path('change_password_done/', CustomPasswordChangeDoneView.as_view(), name='password_change_done'),
     path('reset_password/', CustomPasswordResetView.as_view(), name='reset_password'),
