@@ -75,6 +75,7 @@ class UserAdmin(BaseUserAdmin):
         (None, {'fields': ('email', 'password')}),
         ('Personal Info', {'fields': ('name', 'date_of_birth', 'phone_number')}),
         ('Delivery Address', {'fields': ('street_address', 'city', 'state', 'zip_code')}),
+        ('Remaining Meals In Current Plan', {'fields': ('remaining_meals',)}),
         ('Permissions', {'fields': ('is_admin', 'is_active')}),
         ('Dates', {'fields': ('created_at','updated_at',)})
     )
