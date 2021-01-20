@@ -46,9 +46,9 @@
         <div class="alert alert-danger text-center" role="alert">Your current order has more meals that what you have remaining on your current plan. Please adjust your order.</div>
         <h1 class="text-danger">Current order total: {{ current_total }} meals</h1>
         {% else %}
-        <h1>Current order total: {{ current_total }} meals</h1>
+        <p class="fs-4">Current order total: {{ current_total }} meals</p>
         {% endif %}
-        <h1>Remaining meals before this weeks order: {{ current_user.remaining_meals }} meals</h1>
+        <p class="fs-4">Remaining meals left on current meal plan after this order: {{ meals_remaining_after_order }} meals</p>
     </div>
 </div>
 {% else %}
