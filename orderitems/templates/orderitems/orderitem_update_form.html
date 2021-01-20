@@ -14,7 +14,7 @@
     <div class="mb-3 col-md-6 mx-auto letterText">
         <form action="{% url 'orderitem-update' object.id %}" method="post">
             {% csrf_token %}
-            <div class="fieldWrapper">
+            <div class="fieldWrapper mb-3">
                 {% if form.quantity.errors %}
                     {% for error in form.quantity.errors %}
                     <div class="alert alert-danger" role="alert">
@@ -25,7 +25,7 @@
                 {{ form.quantity.label_tag }}
                 {{ form.quantity }}
             </div>
-            <div class="fieldWrapper">
+            <div class="fieldWrapper mb-3">
                 {% if form.special_requests.errors %}
                     {% for error in form.special_requests.errors %}
                     <div class="alert alert-danger" role="alert">
