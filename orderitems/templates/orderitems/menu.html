@@ -57,22 +57,22 @@
 </div>
 <div class="container">
     {% for meal in order_items %}
-    <div class="row mb-4 border border-info border-2">
+    <div class="row mb-4 mt-4 border border-info border-2">
         <div class="col-lg-1">
             <img src="{{ meal.item.small_picture_url }}" alt="{{ meal.item }}" class="img-responsive pt-3">
         </div>
         <div class="col-lg-5">
-            <p class="fs-3 letterText">{{ meal.item }}</p>
-            <p class="fs-6">{{ meal.item.description }}</p>
+            <p class="fs-3 letterText mt-2 mb-1">{{ meal.item }}</p>
+            <p class="fs-6 mb-2">{{ meal.item.description }}</p>
             <p class="fs-7">{{ meal.item.proteins }}C/{{ meal.item.carbs }}P/{{ meal.item.fats }}F
                 {{ meal.item.calories }}CAL</p>
         </div>
-        <div class="col-lg-3 align-self-center">
-            <p class="fs-6">Special Requests: {{ meal.special_requests }}</p>
+        <div class="col-lg-4">
+            <p class="mt-4 mb-2"><span class="fs-6 letterText fw-bold">Special Requests: </span>{{ meal.special_requests }}</p>
         </div>
-        <div class="col-lg-3 align-self-center text-center">
-            <p class="fs-6">Quantity: {{ meal.quantity }}</p>
-            <a href="{% url 'orderitem-update' meal.id %}" class="btn btn-outline-success btn-md">Update</a>
+        <div class="col-lg-2 align-self-center text-center mb-4">
+            <p class="mt-4 mb-2"><span class="fs-5 letterText fw-bold">Quantity: </span>{{ meal.quantity }}</p>
+            <a href="{% url 'orderitem-update' meal.id %}" class="btn btn-outline-info btn-md mt-3">Update</a>
         </div>
     </div>
     {% endfor %}
