@@ -21,10 +21,12 @@ def orderItemsView(request):
     current_total = 0
     for item in order_items:
         current_total += item.quantity
+    meals_remaining_after_order = (current_user.remaining_meals - current_total)
     context ={
         'current_user': current_user,
         'order_items': order_items,
         'current_total': current_total,
+        'meals_remaining_after_order': meals_remaining_after_order,
     }
 
     return render(request, 'orderitems/menu.html', context)
@@ -42,6 +44,14 @@ class OrderItemUpdate(LoginRequiredMixin, UpdateView):
    
     def get_success_url(self):
         return reverse('orderitems')
+
+    def get_form_kwargs(self):
+        """ Passes the request object to the form class.
+         This is necessary to access the current user in the form"""
+
+        kwargs = super(OrderItemUpdate, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
 
     def get_object(self, queryset=None):
         """
