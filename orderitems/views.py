@@ -45,6 +45,14 @@ class OrderItemUpdate(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('orderitems')
 
+    def get_form_kwargs(self):
+        """ Passes the request object to the form class.
+         This is necessary to access the current user in the form"""
+
+        kwargs = super(OrderItemUpdate, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
     def get_object(self, queryset=None):
         """
         Return the object the view is displaying.
