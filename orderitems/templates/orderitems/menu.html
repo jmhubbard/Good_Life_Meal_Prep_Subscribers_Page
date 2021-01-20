@@ -3,7 +3,9 @@
 {% block content %}
 <div class="container firstElement col-10">
     <h1>Hello {{current_user.name}}!</h1>
-    <p class="bodyText">Here is the weekly menu. Simply click the update buttons to change the quantites for each meal item. Whatever numbers are displayed on the page, will be your order. Feel free to update your order quanities as much as you like. Just make sure you have
+    <p class="bodyText">Here is the weekly menu. Simply click the update buttons to change the quantites for each meal
+        item. Whatever numbers are displayed on the page, will be your order. Feel free to update your order quanities
+        as much as you like. Just make sure you have
         your order it by Thursday.</p>
 </div>
 
@@ -43,13 +45,37 @@
     </div>
     <div class="container text-end letterText">
         {% if current_total > current_user.remaining_meals%}
-        <div class="alert alert-danger text-center" role="alert">Your current order has more meals that what you have remaining on your current plan. Please adjust your order.</div>
+        <div class="alert alert-danger text-center" role="alert">Your current order has more meals that what you have
+            remaining on your current plan. Please adjust your order.</div>
         <h1 class="text-danger">Current order total: {{ current_total }} meals</h1>
         {% else %}
         <p class="fs-4">Current order total: {{ current_total }} meals</p>
         {% endif %}
-        <p class="fs-4">Remaining meals left on current meal plan after this order: {{ meals_remaining_after_order }} meals</p>
+        <p class="fs-4">Remaining meals left on current meal plan after this order: {{ meals_remaining_after_order }}
+            meals</p>
     </div>
+</div>
+<div class="container">
+    {% for meal in order_items %}
+    <div class="row mb-4 border border-info border-2">
+        <div class="col-lg-1">
+            <img src="{{ meal.item.small_picture_url }}" alt="{{ meal.item }}" class="img-responsive pt-3">
+        </div>
+        <div class="col-lg-5">
+            <p class="fs-3 letterText">{{ meal.item }}</p>
+            <p class="fs-6">{{ meal.item.description }}</p>
+            <p class="fs-7">{{ meal.item.proteins }}C/{{ meal.item.carbs }}P/{{ meal.item.fats }}F
+                {{ meal.item.calories }}CAL</p>
+        </div>
+        <div class="col-lg-3 align-self-center">
+            <p class="fs-6">Special Requests: {{ meal.special_requests }}</p>
+        </div>
+        <div class="col-lg-3 align-self-center text-center">
+            <p class="fs-6">Quantity: {{ meal.quantity }}</p>
+            <a href="{% url 'orderitem-update' meal.id %}" class="btn btn-outline-success btn-md">Update</a>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% else %}
 <div class="container letterText closedMenu">
