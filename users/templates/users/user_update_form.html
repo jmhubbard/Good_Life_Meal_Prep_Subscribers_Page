@@ -26,16 +26,3 @@
 </div>
 
 {% endblock %}
-
-<div class="container">
-    <form action="{% url 'orderitem-update' object.id %}" method="post">
-        <div class="mb-3">
-            {% csrf_token %}
-            {{ form.as_p }}
-        </div>
-        <div class="container text-end">
-            <a href="{% url 'orderitems' %}" class="btn btn-secondary btn-lg">Cancel</a>
-            <input type="submit" value="Update" class="btn btn-success btn-lg">
-        </div>
-    </form>
-</div>
