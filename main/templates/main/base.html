@@ -34,6 +34,33 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav mx-auto align-items-center">
+                    <li class="nav-item active">
+                        <a class="nav-link fs-5 fw-bold" aria-current="page" href="{% url 'orderitems' %}">Weekly Menu</a>
+                    </li>
+                    <span class="navbar-text fs-5">|</span>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 fw-bold" href="{% url 'profile' user.id %}">Profile</a>
+                    </li>
+                    <span class="navbar-text fs-5">|</span>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 fw-bold" href="{% url 'contact_form' %}">Contact Us</a>
+                    </li>
+                    <span class="navbar-text fs-5">|</span>
+                    {% if user.is_admin %}
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 fw-bold" href="{% url 'admin:index' %}">Admin</a>
+                    </li>
+                </ul>
+                {% endif %}
+                <ul class="navbar-nav justify-content-end align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link fs-5 fw-bold" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+                {% else %}
+
                 <ul class="navbar-nav mx-auto align-items-center">
                     <li class="nav-item">
                         <a class="nav-link fs-5 fw-bold" href="https://www.thegoodlifemealprep.com/">Home</a>
@@ -52,27 +79,6 @@
                         </a>
                     </li>
                 </ul>
-                {% if user.is_authenticated %}
-                <ul class="navbar-nav justify-content-end align-items-center">
-                    <li class="nav-item active">
-                        <a class="nav-link fs-5 fw-bold" aria-current="page" href="{% url 'orderitems' %}">Weekly Menu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-5 fw-bold" href="{% url 'profile' user.id %}">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-5 fw-bold" href="{% url 'contact_form' %}">Contact Us</a>
-                    </li>
-                    {% if user.is_admin %}
-                    <li class="nav-item">
-                        <a class="nav-link fs-5 fw-bold" href="{% url 'admin:index' %}">Admin</a>
-                    </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link fs-5 fw-bold" href="{% url 'logout' %}">Logout</a>
-                    </li>
-                </ul>
-                {% else %}
                 <ul class="navbar-nav justify-content-end align-items-center">
                     <li class="nav-item">
                         <a class="nav-link fs-5 fw-bold" href="{% url 'login' %}">Member's Login</a>

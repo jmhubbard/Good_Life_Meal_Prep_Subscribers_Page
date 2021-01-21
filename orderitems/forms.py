@@ -4,6 +4,7 @@ from .models import OrderItem
 from django.core.exceptions import ValidationError
 
 
+
 class OrderItemUpdateForm(forms.ModelForm):
     """
     A form that allows users to update a specific OrderItem. Widgets are defined for each field
@@ -20,12 +21,18 @@ class OrderItemUpdateForm(forms.ModelForm):
         self.current_user = self.request.user
         
 
+
     class Meta:
         model = OrderItem
         fields = ('quantity', 'special_requests')
 
+        quantitylist = []
+        for number in range(0,21):
+            quantitylist.append((number,number))
+
+
         widgets = {
-            'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
+            'quantity': forms.Select(choices=quantitylist, attrs={'class': 'form-control'}),
             'special_requests': forms.Textarea(attrs={'class': 'form-control'}),
         }
 

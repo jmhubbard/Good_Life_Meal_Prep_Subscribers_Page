@@ -1,60 +1,80 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<div class="container firstElement col-10">
-    <h1>Hello {{current_user.name}}!</h1>
-    <p class="bodyText">Here is the weekly menu. Simply click the update buttons to change the quantites for each meal item. Whatever numbers are displayed on the page, will be your order. Feel free to update your order quanities as much as you like. Just make sure you have
-        your order it by Thursday.</p>
+<div class="container firstElement">
+    <h1 class="text-center">Weekly Menu</h1>
+    <h3>Hello {{ current_user.name }}!</h3>
+    <p>Here are our delicious meals for the week. There's no need to click a button to submit your order; simply update your order as many times as you would like before the ordering window closes at 11:59 pm on Thursday.</p>
 </div>
 
 {% if order_items|length > 0 %}
-<div class="container col-10">
-    <h2 class="text-center letterText">WEEKLY MENU</h2>
-    <div class="form-group">
-        <table class="table table-borderless table-sm">
-            <thead>
-                <tr class="letterText fs-5 fw-bold fst-italic">
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col">Special Requests</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for i in order_items %}
-                <tr>
-                    <th scope="row"><img src="{{ i.item.small_picture_url }}" alt="{{ i.item }}">
-                        </td>
-                    <td class="col-5">
-                        <h4>{{ i.item }}</h4>
-                        <p>{{ i.item.description }}
-                        <p>{{i.item.proteins}}C/{{i.item.carbs}}P/{{i.item.fats}}F
-                            {{i.item.calories}}CAL</p>
-                    </td>
-                    <td>{{ i.special_requests }}</td>
-                    <td class="text-center">{{ i.quantity }}</td>
-                    <td><a href="{% url 'orderitem-update' i.id %}" class="btn btn-outline-success btn-md">Update</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<div class="container">
+    <h3 class="text-center letterText">Current Order</h3>
+    {% for order in order_items%}
+    {% if order.quantity > 0 %}
+    <div class="alert alert-info text-end my-1 p-1" role="alert">
+        {{ order.item }} <span class="badge rounded-pill bg-warning text-dark">{{ order.quantity}}</span>
     </div>
-    <div class="container text-end letterText">
-        {% if current_total > current_user.remaining_meals%}
-        <div class="alert alert-danger text-center" role="alert">Your current order has more meals that what you have remaining on your current plan. Please adjust your order.</div>
-        <h1 class="text-danger">Current order total: {{ current_total }} meals</h1>
-        {% else %}
-        <p class="fs-4">Current order total: {{ current_total }} meals</p>
-        {% endif %}
-        <p class="fs-4">Remaining meals left on current meal plan after this order: {{ meals_remaining_after_order }} meals</p>
+    {% endif %}
+    {% endfor %}
+</div>
+<div class="container mb-4">
+    <div class="alert alert-warning text-end my-1 p-1 fw-bold text-decoration-underline" role="alert">
+        Total Meals:<span class="badge rounded-pill bg-warning text-dark">{{ current_total }}</span>
+    </div>
+    <div class="alert alert-warning text-end my-1 p-1 fw-bold text-decoration-underline" role="alert">Remaining Subscription Meals:<span class="badge rounded-pill bg-warning text-dark"> {{ meals_remaining_after_order }}</span>
     </div>
 </div>
+<div class="container">
+    {% for meal in order_items %}
+    <div class="row mb-4 border border-info border-2">
+        <div class="col-md-2 px-0 pt-3">
+            <img src="{{ meal.item.small_picture_url }}" alt="{{ meal.item }}" class=" mx-auto d-block">
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col">
+                    <p class="fs-4 letterText mt-2 mb-1">{{ meal.item }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="fs-6 mb-2">{{ meal.item.description }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="fs-7 fw-bold">{{ meal.item.proteins }}C/{{ meal.item.carbs }}P/{{ meal.item.fats }}F
+                        {{ meal.item.calories }}CAL</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col">
+                    <p class="mt-4 mb-2"><span class="fs-6 letterText fw-bold">Special Requests: </span>{{ meal.special_requests }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="mt-2 mb-2 fw-bold"><span class="fs-6 letterText">Quantity: </span>{{ meal.quantity }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center pb-4 pt-3">
+                    <a href="{% url 'orderitem-update' meal.id %}" class="btn btn-outline-info btn-lg">Update</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 {% else %}
 <div class="container letterText closedMenu">
     <h3>You're too late! Ordering for this weeks menu is already over. Please stop by next to place your orders!</h3>
 </div>
+
 {% endif %}
 
 {% endblock %}
