@@ -9,54 +9,20 @@
         your order it by Thursday.</p>
 </div>
 
-{% if order_items|length > 0 %}
-<div class="container col-10">
-    <h2 class="text-center letterText">WEEKLY MENU</h2>
-    <div class="form-group">
-        <table class="table table-borderless table-sm">
-            <thead>
-                <tr class="letterText fs-5 fw-bold fst-italic">
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col">Special Requests</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for i in order_items %}
-                <tr>
-                    <th scope="row"><img src="{{ i.item.small_picture_url }}" alt="{{ i.item }}">
-                        </td>
-                    <td class="col-5">
-                        <h4>{{ i.item }}</h4>
-                        <p>{{ i.item.description }}
-                        <p>{{i.item.proteins}}C/{{i.item.carbs}}P/{{i.item.fats}}F
-                            {{i.item.calories}}CAL</p>
-                    </td>
-                    <td>{{ i.special_requests }}</td>
-                    <td class="text-center">{{ i.quantity }}</td>
-                    <td><a href="{% url 'orderitem-update' i.id %}" class="btn btn-outline-success btn-md">Update</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <div class="container text-end letterText">
-        {% if current_total > current_user.remaining_meals%}
-        <div class="alert alert-danger text-center" role="alert">Your current order has more meals that what you have
-            remaining on your current plan. Please adjust your order.</div>
-        <h1 class="text-danger">Current order total: {{ current_total }} meals</h1>
-        {% else %}
-        <p class="fs-4">Current order total: {{ current_total }} meals</p>
-        {% endif %}
-        <p class="fs-4">Remaining meals left on current meal plan after this order: {{ meals_remaining_after_order }}
-            meals</p>
-    </div>
+<div class="container text-end letterText">
+    {% if current_total > current_user.remaining_meals%}
+    <div class="alert alert-danger text-center" role="alert">Your current order has more meals that what you have
+        remaining on your current plan. Please adjust your order.</div>
+    <h1 class="text-danger">Current order total: {{ current_total }} meals</h1>
+    {% else %}
+    <p class="fs-4">Current order total: {{ current_total }} meals</p>
+    {% endif %}
+    <p class="fs-4">Remaining meals left on current meal plan after this order: {{ meals_remaining_after_order }}
+        meals</p>
 </div>
 
 
+{% if order_items|length > 0 %}
 <div class="container">
     {% for meal in order_items %}
     <div class="row mb-4 border border-info border-2">
@@ -101,10 +67,12 @@
     </div>
     {% endfor %}
 </div>
+
 {% else %}
 <div class="container letterText closedMenu">
     <h3>You're too late! Ordering for this weeks menu is already over. Please stop by next to place your orders!</h3>
 </div>
+
 {% endif %}
 
 {% endblock %}
