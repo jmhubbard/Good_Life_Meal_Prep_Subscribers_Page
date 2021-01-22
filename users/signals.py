@@ -12,9 +12,9 @@ def email_admin_after_create_new_user(sender, instance, created, **kwargs):
     """
 
     if created:
-        recipient_list = [os.getenv("EMAIL_HOST_USER")]
         new_user = instance    
         mailmessage = (f'A new user has signed up on the Good Life Meal Prep Subscribers Page.\nEmail: {new_user}\nName: {new_user.name}\nPhone Number: {new_user.phone_number}')
+        recipient_list = User.objects.filter(is_admin=True)
         send_mail(
             f'The Good Life Meal Prep Subscribers New User Signup Notification',
             mailmessage,
