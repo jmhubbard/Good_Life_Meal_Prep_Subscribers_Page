@@ -115,7 +115,7 @@ class ContactForm(forms.Form):
         subject = self.cleaned_data['subject']
         message = self.cleaned_data['message']
 
-        recipient_list = [os.getenv("EMAIL_HOST_USER")]
+        recipient_list = User.objects.filter(is_admin=True)
         
         mailmessage = (f'Sender: {current_user.name}\nEmail: {current_user.email}\nSubject: {subject}\nMessage: {message}')
 
