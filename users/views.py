@@ -117,7 +117,7 @@ class CustomPasswordResetCompleteView(PasswordResetCompleteView):
         return super().dispatch(*args, **kwargs)
 
 
-class UserProfileUpdateView(UpdateView):
+class UserProfileUpdateView(SuccessMessageMixin, UpdateView):
     """
     A view that allows authenticated users to update their profile information.
     """
@@ -126,6 +126,7 @@ class UserProfileUpdateView(UpdateView):
     form_class = UserUpdateForm
     # fields = ["name", "date_of_birth"]
     template_name_suffix = '_update_form'
+    success_message = "Your profile has been updated"
 
     def get_success_url(self):
         return reverse('orderitems')
