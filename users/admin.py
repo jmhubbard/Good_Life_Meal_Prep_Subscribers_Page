@@ -5,6 +5,9 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 
+from django.contrib import messages
+from django.utils.translation import ngettext
+
 from .models import User
 
 
@@ -62,6 +65,77 @@ class UserChangeForm(forms.ModelForm):
 
 
 class UserAdmin(BaseUserAdmin):
+    actions = [
+    'add_additional_40_meals',
+    'add_additional_60_meals',
+    'add_additional_80_meals',
+    'change_current_meals_to_60_meals',
+    'change_current_meals_to_80_meals',
+    ]
+
+    def add_additional_40_meals(self, request, queryset):
+        total = 0
+        for user in queryset:
+            user.remaining_meals += 40
+            user.save()
+            total += 1
+        self.message_user(request, ngettext(
+        '40 meals were added to %d user.',
+        '40 meals were added to %d users.',
+        total,
+        ) % total, messages.SUCCESS)
+
+    def add_additional_60_meals(self, request, queryset):
+        total = 0
+        for user in queryset:
+            user.remaining_meals += 60
+            user.save()
+            total += 1
+        self.message_user(request, ngettext(
+        '60 meals were added to %d user.',
+        '60 meals were added to %d users.',
+        total,
+        ) % total, messages.SUCCESS)
+
+
+    def add_additional_80_meals(self, request, queryset):
+        total = 0
+        for user in queryset:
+            user.remaining_meals += 80
+            user.save()
+            total += 1
+        self.message_user(request, ngettext(
+        '80 meals were added to %d user.',
+        '80 meals were added to %d users.',
+        total,
+        ) % total, messages.SUCCESS)
+
+
+    def change_current_meals_to_60_meals(self, request, queryset):
+        total = 0
+        for user in queryset:
+            user.remaining_meals = 60
+            user.save()
+            total += 1
+        self.message_user(request, ngettext(
+        '%d user had their meal subscription changed to 60 meals.',
+        '%d users had their meal subscriptions changed to 60 meals.',
+        total,
+        ) % total, messages.SUCCESS)
+
+
+    def change_current_meals_to_80_meals(self, request, queryset):
+        total = 0
+        for user in queryset:
+            user.remaining_meals = 80
+            user.save()
+            total += 1
+        self.message_user(request, ngettext(
+        '%d user had their meal subscription changed to 80 meals.',
+        '%d users had their meal subscriptions changed to 80 meals.',
+        total,
+        ) % total, messages.SUCCESS)
+
     # The forms to add and change user instances
     form = UserChangeForm
     add_form = UserCreationForm
