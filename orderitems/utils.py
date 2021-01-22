@@ -30,11 +30,12 @@ def emailWeeklyOrders():
     }
     message_text = render_to_string("orderitems/email_weekly_orders.txt", context=context)
 
-    
+    current_admins = User.objects.filter(is_admin=True)
+
     send_mail(
         'Weekly Orders Email',
         message_text,
         os.getenv("EMAIL_HOST_USER"),
-        [os.getenv("EMAIL_HOST_USER")],
+        current_admins,
         fail_silently=False,
     )
