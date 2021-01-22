@@ -28,8 +28,8 @@
 <div class="container">
     {% for meal in order_items %}
     <div class="row mb-4 border border-info border-2">
-        <div class="col-md-2 px-0 pt-3">
-            <img src="{{ meal.item.small_picture_url }}" alt="{{ meal.item }}" class=" mx-auto d-block">
+        <div class="col-md-2 px-2 pt-2">
+            <img src="{{ meal.item.large_picture_url }}" alt="{{ meal.item }}" class=" mx-auto d-block img-fluid">
         </div>
         <div class="col-sm-6">
             <div class="row">
