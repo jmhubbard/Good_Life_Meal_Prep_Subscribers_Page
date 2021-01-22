@@ -2,9 +2,13 @@
 
 {% block content %}
 <div class="container firstElement">
+    {% for message in messages %}
+    <div class="alert alert-info text-center" role="alert">{{ message }}</div>
+    {% endfor %}
     <h1 class="text-center">Weekly Menu</h1>
     <h3>Hello {{ current_user.name }}!</h3>
     <p>Here are our delicious meals for the week. There's no need to click a button to submit your order; simply update your order as many times as you would like before the ordering window closes at 11:59 pm on Thursday.</p>
+
 </div>
 
 {% if order_items|length > 0 %}
@@ -72,7 +76,7 @@
 
 {% else %}
 <div class="container letterText closedMenu">
-    <h3>You're too late! Ordering for this weeks menu is already over. Please stop by next to place your orders!</h3>
+    <h3>Oh no! You're too late! Ordering for this week's menu is already over. Please stop by next week to place your orders!</h3>
 </div>
 
 {% endif %}
