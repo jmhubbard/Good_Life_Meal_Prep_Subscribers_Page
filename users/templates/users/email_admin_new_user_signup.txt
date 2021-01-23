@@ -1,0 +1,5 @@
+A new user has signed up on the Good Life Meal Prep Subscribers Page.
+Name: {new_user.name}
+Email: {new_user}
+Phone Number: {new_user.phone_number}
+

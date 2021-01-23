@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     'django_extensions',
     'crispy_forms',
@@ -149,3 +150,5 @@ EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 PHONENUMBER_DEFAULT_REGION = 'US'
+
+SITE_ID = 1

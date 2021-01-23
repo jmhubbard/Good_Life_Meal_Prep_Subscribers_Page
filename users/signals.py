@@ -4,6 +4,7 @@ from django.core.mail import send_mail
 
 from .models import User
 
+from .utils import email_admin_new_user_sign_up
 
 
 def email_admin_after_create_new_user(sender, instance, created, **kwargs):
@@ -13,15 +14,7 @@ def email_admin_after_create_new_user(sender, instance, created, **kwargs):
 
     if created:
         new_user = instance    
-        mailmessage = (f'A new user has signed up on the Good Life Meal Prep Subscribers Page.\nEmail: {new_user}\nName: {new_user.name}\nPhone Number: {new_user.phone_number}')
-        recipient_list = User.objects.filter(is_admin=True)
-        send_mail(
-            f'The Good Life Meal Prep Subscribers New User Signup Notification',
-            mailmessage,
-            os.getenv("EMAIL_HOST_USER"),
-            recipient_list,
-            fail_silently=False
-        )
-
+        email_admin_new_user_sign_up(new_user)
+        
 post_save.connect(email_admin_after_create_new_user, sender=User)
 
