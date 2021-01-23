@@ -6,16 +6,6 @@ from django.template.loader import render_to_string
 from users.models import User
 from orderitems.models import OrderItem
 
-
-def email_test(user, message):
-    send_mail(
-        'Quote test',
-        message,
-        os.getenv("EMAIL_HOST_USER"),
-        [user],
-        fail_silently=False,
-    )
-
 def emailWeeklyOrders():
     all_users = User.objects.filter(is_active=True)
     orders = []
