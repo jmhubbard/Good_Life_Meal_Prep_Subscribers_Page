@@ -10,6 +10,7 @@ class Meal(models.Model):
     calories = models.PositiveSmallIntegerField(null=True, blank=True)
     small_picture_url = models.URLField(null=True, blank=True)
     large_picture_url = models.URLField(null=True, blank=True)
+    menu_sort_order = models.PositiveSmallIntegerField(default=0)
 
 
     created_at = models.DateTimeField(auto_now_add=True)
