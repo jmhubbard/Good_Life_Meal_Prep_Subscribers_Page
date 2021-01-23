@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container text-center firstElement col-md-6">
     <h1>Sign Up Page</h1>
-    <p class="bodyText">Welcome to the Good Life Meal Prep Subscribers Sign Up Page. If you have already purchased one of our subscription meal plans, please fill out the form below to create a member account to update your weekly orders. If you haven't yet purchased a subscription plan, <a href="https://www.thegoodlifemealprep.com/online-ordering">click here</a> to see our available plans.</p>
+    <p class="letterText">Welcome to the Good Life Meal Prep Subscribers Sign Up Page. If you have already purchased one of our subscription meal plans, please fill out the form below to create a member account to update your weekly orders. If you haven't yet purchased a subscription plan, <a href="https://www.thegoodlifemealprep.com/online-ordering">click here</a> to see our available plans.</p>
 </div>
 <div class="container">
     <div class="mb-3 col-md-6 mx-auto letterText">
@@ -13,7 +13,7 @@
             {% csrf_token %}
             {{ form.as_p }}
             <div class="container text-center">
-                <input type="submit" value="Submit" class="btn btn-success btn-lg col-8 signUpButton">
+                <input type="submit" value="Submit" class="btn btn-lg btn-outline-info">
             </div>
         </form>
     </div>
