@@ -12,6 +12,7 @@ class MealAdmin(admin.ModelAdmin):
     actions = [
         'add_meals_to_menu',
         'remove_meals_from_menu',
+        'set_menu_sort_order_to_zero',
     ]
 
     def add_meals_to_menu(self, request, queryset):
@@ -42,7 +43,6 @@ class MealAdmin(admin.ModelAdmin):
             total +=1
             all_orderItems_for_current_meal = OrderItem.objects.filter(item=meal)
             for current_orderItem in all_orderItems_for_current_meal:
-                print(current_orderItem)
                 current_orderItem.is_on_current_menu = False
                 current_orderItem.save()
         self.message_user(request, ngettext(
@@ -51,9 +51,24 @@ class MealAdmin(admin.ModelAdmin):
         total,
     ) % total, messages.SUCCESS)
 
+    def set_menu_sort_order_to_zero(self, request, queryset):
+        total = 0
+        for meal in queryset:
+            meal.menu_sort_order = 0
+            meal.save()
+            total += 1
+        
+        self.message_user(request, ngettext(
+        '%d meals menu sort order was set to empty.',
+        '%d meals menu sort order was set to empty.',
+        total,
+    ) % total, messages.SUCCESS)
 
-    list_display = ('is_on_menu','name', 'description', 'proteins', 'carbs', 'fats', 'calories')
-    field_display = ('name','description','proteins', 'carbs', 'fats', 'calories', 'small_picture_url', 'large_picture_url', 'created_at', 'updated_at')
+
+
+    list_display = ('name', 'is_on_menu', 'menu_sort_order', 'description', 'proteins', 'carbs', 'fats', 'calories')
+    list_filter = ('is_on_menu',)
+    field_display = ('name','description','proteins', 'carbs', 'fats', 'calories', 'menu_sort_order', 'small_picture_url', 'large_picture_url', 'created_at', 'updated_at')
     readonly_fields = ('created_at', 'updated_at', 'is_on_menu')
     search_fields = ('name',)
     ordering = ('name',)

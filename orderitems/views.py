@@ -17,7 +17,7 @@ def orderItemsView(request):
     """
     
     current_user = request.user
-    order_items = OrderItem.objects.filter(user = current_user, item__is_on_menu = True).order_by('item__name')
+    order_items = OrderItem.objects.filter(user = current_user, item__is_on_menu = True).order_by('item__menu_sort_order')
     current_total = 0
     for item in order_items:
         current_total += item.quantity
