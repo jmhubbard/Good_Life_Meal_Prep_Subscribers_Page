@@ -17,7 +17,7 @@ class Command(BaseCommand):
 
             for user in all_users:
                 number_of_meals_ordered = 0
-                weekly_order = OrderItem.objects.filter(user=user, is_on_current_menu=True)
+                weekly_order = OrderItem.objects.filter(user=user, is_on_current_menu=True, quantity__gt=0)
                 for item in weekly_order:
                     number_of_meals_ordered += item.quantity
                 user.remaining_meals -= number_of_meals_ordered
