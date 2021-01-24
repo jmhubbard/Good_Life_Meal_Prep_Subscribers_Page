@@ -18,7 +18,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         current_day_of_the_week = datetime.datetime.today().weekday()
 
-        if current_day_of_the_week == 4:
+        if current_day_of_the_week == 6:
             emailWeeklyOrders()
             print("Orders have been emailed")
         else:
