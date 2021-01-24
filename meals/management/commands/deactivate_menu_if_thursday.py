@@ -7,7 +7,7 @@ from meals.models import Meal
 
 
 class Command(BaseCommand):
-    help = 'Deactivates the current menu so users cannot update their orders'
+    help = 'Deactivates the current menu so users cannot update their orders.'
 
     def handle(self, *args, **options):
         current_day_of_the_week = datetime.datetime.today().weekday()
