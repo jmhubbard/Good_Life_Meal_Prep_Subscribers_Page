@@ -111,9 +111,9 @@
                     <tr>
                       <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px; text-align: center;"><strong>A new user has signed up on the Good Life Meal Prep Subscriber's Page.</strong></p>
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 5px;"><strong>Name:</strong><em>{{ new_user.name }}</em></p>
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 5px;"><strong>Email:</strong><em>{{ new_user.email }}</em></p>
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 8px;"><strong>Phone:</strong><em>{{ new_user.phone_number }}</em></p>
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 5px;"><strong>Name:</strong><em> {{ new_user.name }}</em></p>
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 5px;"><strong>Email:</strong><em> {{ new_user.email }}</em></p>
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 8px;"><strong>Phone:</strong><em> {{ new_user.phone_number.as_national }}</em></p>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;"><em>The new user was created with the default of 40 meals. To adjust their meal quantity click the button below.</em></p>
                         <div style="text-align: center;">
                             <button type="button" style="background-color: white; color: black; border: 2px solid #0275d8; border-radius: 6px; font-size: 20px;"><a href="{{admin_link}}" style="text-decoration: none; color: initial">Update Quantity</a></button>
