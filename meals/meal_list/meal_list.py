@@ -32,5 +32,6 @@ meal_list = [
     {"name": "Tri Bean Turkey Chili", "description": "Slow Cooked Tri Bean Turkey Chili served with Roasted Herb Potato Wedges", "proteins": 36, "carbs": 53, "fats": 10, "calories": 465, "large_picture_url": "https://static.wixstatic.com/media/5bd43b_d0110407f7704fb1ad612d79bda766ec~mv2.jpg/v1/fill/w_466,h_350,usm_1.20_1.00_0.01/file.jpg", "is_on_menu": False},
 ]
 
+
 template = {"name": "", "description": "", "proteins": 0, "carbs": 0, "fats": 0, "calories": 0, "large_picture_url": "", "is_on_menu": False},
 
