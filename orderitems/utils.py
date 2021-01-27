@@ -18,7 +18,7 @@ def emailWeeklyOrders():
     for customer in all_users:
         orderItems = OrderItem.objects.filter(user=customer, is_on_current_menu=True, quantity__gt=0)
 
-        order = {"name": customer.name, "email": customer.email, "phone_number": customer.phone_number, "street_address": customer.street_address, "city": customer.city, "state": customer.state, "zipcode": customer.zip_code, "meals": orderItems}
+        order = {"name": customer.name, "email": customer.email, "phone_number": customer.phone_number.as_national, "street_address": customer.street_address, "city": customer.city, "state": customer.state, "zipcode": customer.zip_code, "meals": orderItems}
         orders.append(order)
 
     domain = Site.objects.get_current().domain
