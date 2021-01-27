@@ -8,7 +8,6 @@ class Meal(models.Model):
     carbs = models.PositiveSmallIntegerField(null=True, blank=True)
     fats = models.PositiveSmallIntegerField(null=True, blank=True)
     calories = models.PositiveSmallIntegerField(null=True, blank=True)
-    small_picture_url = models.URLField(null=True, blank=True)
     large_picture_url = models.URLField(null=True, blank=True)
     menu_sort_order = models.PositiveSmallIntegerField(default=0)
 

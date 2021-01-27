@@ -28,7 +28,6 @@ class Command(BaseCommand):
                 carbs = item["carbs"],
                 fats = item["fats"],
                 calories = item["calories"],
-                small_picture_url = item["small_picture_url"],
                 large_picture_url = item["large_picture_url"],
                 is_on_menu = item["is_on_menu"],
             )
