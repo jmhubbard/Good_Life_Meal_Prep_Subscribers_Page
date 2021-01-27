@@ -44,6 +44,7 @@ class MealAdmin(admin.ModelAdmin):
             all_orderItems_for_current_meal = OrderItem.objects.filter(item=meal)
             for current_orderItem in all_orderItems_for_current_meal:
                 current_orderItem.is_on_current_menu = False
+                current_orderItem.quantity = 0
                 current_orderItem.save()
         self.message_user(request, ngettext(
         '%d meal was successfully removed from the menu.',
