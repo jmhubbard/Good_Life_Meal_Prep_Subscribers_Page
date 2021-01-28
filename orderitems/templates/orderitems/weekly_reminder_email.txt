@@ -1,9 +1,9 @@
 Hello {customer.name}!
-{% if order_item == "" %}
+{% if orderItems|length == 0 %}
 We hope you are having a great morning, and we want to remind you that ordering
 for this week's menu ends tonight at 11:59 pm. Right now, it appears as if you 
 haven't placed an order yet. If you would like to order any meals, please follow the link below.
-{user_url}
+{{user_url}}
 {% else %}
 We hope you are having a great morning, and we want to remind you that ordering
 for this week's menu ends tonight at 11:59 pm. Here is what you currently have for this weeks order.
@@ -11,5 +11,5 @@ for this week's menu ends tonight at 11:59 pm. Here is what you currently have f
 {% endfor %}
 
 If you would like to update your order, please follow the link below.
-{user_url}
+{{user_url}}
 {% endif %}
