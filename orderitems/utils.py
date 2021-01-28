@@ -47,5 +47,32 @@ def emailWeeklyOrders():
         current_admins,
         fail_silently=False,
         html_message=message_html,
-
     )
+
+def weekly_reminder_email():
+    all_users = User.objects.filter(is_active=True)
+    domain = Site.objects.get_current().domain
+    user_login_path = reverse('login')
+    user_url = f'http://{domain}{user_login_path}'
+
+    for customer in all_users:
+        orderItems = OrderItem.objects.filter(user=customer, is_on_current_menu=True, quantity__gt=0)
+        print(customer)
+
+        context = {
+            "user_url": user_url,
+            "orderItems": orderItems,
+            "customer": customer,
+        }
+
+        message_text = render_to_string("orderitems/weekly_reminder_email.txt", context=context)
+        message_html = render_to_string("orderitems/weekly_reminder_email.html", context=context)
+
+        send_mail(
+            "Don't forget to place your orders!",
+            message_text,
+            os.getenv("EMAIL_HOST_USER"),
+            [customer.email,],
+            fail_silently=False,
+            html_message=message_html,
+        )
