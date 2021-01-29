@@ -1,0 +1,9 @@
+Hello {{customer.name}}!
+{% if users_order_items|length == 0 %}
+We are sorry to see that you didn't order any meals this week.
+{% else %}
+Thank you for placing your order with us. Here is what you ordered.
+{% for item in users_order_items %} - ({{ item.quantity}}) {{ item.item }} - Special Request: {{ item.special_requests}}
+{% endfor %}
+
+{% endif %}
