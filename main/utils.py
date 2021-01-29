@@ -27,3 +27,9 @@ def get_login_url():
     user_login_url = f'http://{domain}{user_login_path}'
     return user_login_url
 
+def get_admin_login_url():
+    domain = Site.objects.get_current().domain
+    admin_login_path = reverse('admin:index')
+    admin_login_url = f'http://{domain}{admin_login_path}'
+    return admin_login_url
+
