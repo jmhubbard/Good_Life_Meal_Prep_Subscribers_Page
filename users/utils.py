@@ -35,3 +35,12 @@ def email_admin_new_user_sign_up(new_user):
         html_message=message_html,
     )
 
+
+def get_all_active_users():
+    all_users = User.objects.filter(is_active=True)
+    return all_users
+
+def get_all_admins():
+    current_admins = User.objects.filter(is_admin=True)
+    return current_admins
+
