@@ -88,3 +88,36 @@ def weekly_reminder_email():
         total_emails_sent += send_email(context, message_text, message_html, subject, recipient_list)
     
     return total_emails_sent
+
+
+def weekly_order_confirmation_email():
+    all_users = get_all_active_users()
+    user_login_url = get_login_url()
+    subject = "The Good Life Meal Prep Order Confirmation"
+    message_text = "orderitems/weekly_order_confirmation.txt"
+    message_html = "orderitems/weekly_order_confirmation.html"
+
+    total_emails_sent = 0
+    total_full_orders = 0
+    total_empty_orders = 0
+
+    for customer in all_users:
+        users_order_items = get_users_order(customer)
+        if len(users_order_items) == 0:
+            total_empty_orders += 1
+        else:
+            total_full_orders += 1
+        
+        context = {
+            "user_login_url": user_login_url,
+            "users_order_items": users_order_items,
+            "customer": customer,
+        }
+        
+        recipient_list = [customer.email]
+
+        total_emails_sent += send_email(context, message_text, message_html, subject, recipient_list)
+    
+    return total_emails_sent, total_full_orders, total_empty_orders
+
+
