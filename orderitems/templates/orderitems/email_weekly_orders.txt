@@ -1,5 +1,5 @@
 Test
-{% for order in orders %}
+{% for order in all_orders %}
     Name: {{ order.name }}
     Email: {{ order.email}}
     Phone Number: {{ order.phone_number }}
