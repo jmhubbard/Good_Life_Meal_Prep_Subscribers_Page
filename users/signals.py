@@ -1,9 +1,7 @@
 from django.db.models.signals import post_save
-import os
 from django.core.mail import send_mail
 
 from .models import User
-
 from .utils import email_admin_new_user_sign_up
 
 
