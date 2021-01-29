@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 
 
-from orderitems.utils import emailWeeklyOrders
+from orderitems.utils import emailWeeklyOrders, weekly_order_confirmation_email
 
 import datetime
 
@@ -15,6 +15,11 @@ class Command(BaseCommand):
 
         if current_day_of_the_week == 4:
             total_emails_sent, current_admins = emailWeeklyOrders()
-            print("{} total emails have been sent to {}".format(total_emails_sent, current_admins))
+            print("{} order emails have been sent to this list of admins: {}".format(total_emails_sent, current_admins))
+
+            total_user_emails_sent, total_full_orders, total_empty_orders = weekly_order_confirmation_email()
+            print("{} total order confirmations have been sent".format(total_user_emails_sent))
+            print("{} users placed an order".format(total_full_orders))
+            print("{} users did not place an order".format(total_empty_orders))
         else:
             print("email_orders_if_friday was run, but today is not Friday so no emails were sent.")
