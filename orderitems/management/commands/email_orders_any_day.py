@@ -9,6 +9,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        emailWeeklyOrders()
-        print("Orders have been emailed")
+        total_emails_sent, current_admins = emailWeeklyOrders()
+        print("{} total emails have been sent to {}".format(total_emails_sent, current_admins))
 

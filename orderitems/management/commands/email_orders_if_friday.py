@@ -13,7 +13,7 @@ class Command(BaseCommand):
         current_day_of_the_week = datetime.datetime.today().weekday()
 
         if current_day_of_the_week == 4:
-            emailWeeklyOrders()
-            print("Orders have been emailed")
+            total_emails_sent, current_admins = emailWeeklyOrders()
+            print("{} total emails have been sent to {}".format(total_emails_sent, current_admins))
         else:
-            print("Today is not Friday")
+            print("email_orders_if_friday was run, but today is not Friday so no emails were sent.")
