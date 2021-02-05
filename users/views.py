@@ -1,36 +1,29 @@
-from django.shortcuts import render
-from django.views.generic.edit import (
-        CreateView,
-        DeleteView, 
-        UpdateView,)
-from django.contrib.messages.views import SuccessMessageMixin
-from main.decorators import unauthenticated_user
-from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-
-from django.urls import reverse
-from django.urls import reverse_lazy
-
-from django.core.exceptions import PermissionDenied
-from django.http import Http404
-
-
-
-
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from django.contrib.auth.views import (
         PasswordChangeView,
         PasswordChangeDoneView,
         PasswordResetView,
         PasswordResetDoneView, 
         PasswordResetConfirmView,
-        PasswordResetCompleteView,)
+        PasswordResetCompleteView,
+    )
+from django.contrib.messages.views import SuccessMessageMixin
+from django.core.exceptions import PermissionDenied
+from django.http import Http404
+from django.shortcuts import render
+from django.urls import reverse, reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.generic.edit import (
+        CreateView,
+        DeleteView, 
+        UpdateView,
+    )
 
-
-
-from .models import User
 from .forms import UserSignUpForm, UserUpdateForm, CustomUserPasswordChangeForm, CustomPasswordResetForm
+from .models import User
+from main.decorators import unauthenticated_user
+
 
 class UserSignUpView(SuccessMessageMixin, CreateView):
     """
