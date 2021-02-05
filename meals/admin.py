@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib import messages
-from django.utils.translation import ngettext
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.translation import ngettext
 
 from .models import Meal
 from users.models import User
@@ -64,8 +64,6 @@ class MealAdmin(admin.ModelAdmin):
         '%d meals menu sort order was set to empty.',
         total,
     ) % total, messages.SUCCESS)
-
-
 
     list_display = ('name', 'is_on_menu', 'menu_sort_order', 'description', 'proteins', 'carbs', 'fats', 'calories')
     list_filter = ('is_on_menu',)
