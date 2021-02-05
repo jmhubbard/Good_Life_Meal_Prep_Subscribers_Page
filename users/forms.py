@@ -1,44 +1,33 @@
+import datetime
 import string
+
 from django import forms
-from django.forms import ModelForm
-from django.contrib.auth.password_validation import validate_password
-
-from django.contrib.auth.forms import SetPasswordForm
-
-from django.utils.translation import gettext_lazy as _
-
-from django.contrib.auth import password_validation
-from django.core.exceptions import ValidationError
-
-from django.template import loader
-from django.core.mail import EmailMultiAlternatives
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
-
-from django.contrib.auth.tokens import default_token_generator
-from django.contrib.sites.shortcuts import get_current_site
-
 from django.contrib.auth import (
     authenticate, get_user_model, password_validation,
 )
+from django.contrib.auth.forms import _unicode_ci_compare, SetPasswordForm
+from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.exceptions import ValidationError
+from django.core.mail import EmailMultiAlternatives
+from django.core.validators import RegexValidator
+from django.forms import ModelForm
+from django.template import loader
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.utils.translation import gettext_lazy as _
 
-from django.contrib.auth.forms import _unicode_ci_compare
-
-
-from .models import User
 from meals.models import Meal
+from .models import User
 from orderitems.models import OrderItem
 
-import datetime
-
-from django.core.validators import RegexValidator
 
 UserModel = get_user_model()
 
 years = []
 for year in range(1900,2022):
     years.append(year)
-
 
 
 class UserSignUpForm(forms.ModelForm):
