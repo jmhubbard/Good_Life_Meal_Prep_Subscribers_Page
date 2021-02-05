@@ -1,4 +1,3 @@
-Test
 {% for order in all_orders %}
     Name: {{ order.name }}
     Email: {{ order.email}}
