@@ -8,9 +8,6 @@ from users.models import User
 from users.utils import get_all_active_users, get_all_admins
 
 
-
-
-
 def get_users_order(user):
     """
     Returns a queryset of a specific users current order items that have a quantity greater than 0
