@@ -1,8 +1,7 @@
 from django import forms
-from .models import OrderItem
-
 from django.core.exceptions import ValidationError
 
+from .models import OrderItem
 
 
 class OrderItemUpdateForm(forms.ModelForm):
@@ -21,7 +20,6 @@ class OrderItemUpdateForm(forms.ModelForm):
         self.current_user = self.request.user
         
 
-
     class Meta:
         model = OrderItem
         fields = ('quantity', 'special_requests')
@@ -30,14 +28,10 @@ class OrderItemUpdateForm(forms.ModelForm):
         for number in range(0,21):
             quantitylist.append((number,number))
 
-
         widgets = {
             'quantity': forms.Select(choices=quantitylist, attrs={'class': 'form-control'}),
             'special_requests': forms.Textarea(attrs={'class': 'form-control'}),
         }
-
-
-
 
     def clean_quantity(self):
         #The value that was just submited in the form
