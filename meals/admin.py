@@ -66,9 +66,9 @@ class MealAdmin(admin.ModelAdmin):
     ) % total, messages.SUCCESS)
 
     list_display = ('name', 'is_on_menu', 'menu_sort_order', 'description', 'proteins', 'carbs', 'fats', 'calories')
-    list_filter = ('is_on_menu',)
+    list_filter = ('is_on_menu','on_last_weeks_menu')
     field_display = ('name','description','proteins', 'carbs', 'fats', 'calories', 'menu_sort_order', 'large_picture_url', 'created_at', 'updated_at')
-    readonly_fields = ('created_at', 'updated_at', 'is_on_menu')
+    readonly_fields = ('created_at', 'updated_at', 'is_on_menu', 'on_last_weeks_menu')
     search_fields = ('name',)
     ordering = ('name',)
 
