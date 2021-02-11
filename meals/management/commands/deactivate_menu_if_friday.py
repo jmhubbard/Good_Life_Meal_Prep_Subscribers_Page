@@ -13,10 +13,15 @@ class Command(BaseCommand):
         current_day_of_the_week = datetime.datetime.today().weekday()
 
         if current_day_of_the_week == 4:
-            current_menu = Meal.objects.filter(is_on_menu=True)
-            for item in current_menu:
-                item.is_on_menu = False
-                item.save()
-            print("Menu has been deactivated")
+            all_meals = Meal.objects.all()
+            for meal in all_meals:
+                if meal.is_on_menu:
+                    meal.on_last_weeks_menu = True
+                    meal.is_on_menu = False
+                    meal.save()
+                else:
+                    meal.on_last_weeks_menu = False
+                    meal.save()
+            print("Menu has been deactivated and last weeks menu has been recorded.")
         else:
             print("Menu is still active")
