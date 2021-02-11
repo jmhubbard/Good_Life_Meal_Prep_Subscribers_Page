@@ -15,6 +15,7 @@ class Meal(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_on_menu = models.BooleanField(default=False)
+    on_last_weeks_menu = models.BooleanField(default=False)
 
 
 
