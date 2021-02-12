@@ -33,6 +33,16 @@ def get_all_users_orders():
 
     return all_orders
 
+def get_meal_totals_for_active_users():
+    all_orders = OrderItem.objects.filter(user__is_active=True, is_on_current_menu=True, quantity__gt=0)
+    current_menu_meal_totals = {}
+    for order in all_orders:
+        if order.item not in current_menu_meal_totals:
+            current_menu_meal_totals[order.item] = order.quantity
+        else:
+            current_menu_meal_totals[order.item] += order.quantity
+    return current_menu_meal_totals
+
 
 def emailWeeklyOrders():
     """
@@ -123,15 +133,14 @@ def weekly_order_confirmation_email():
     return total_emails_sent, total_full_orders, total_empty_orders
 
 
-def create_weekly_order_csv():
-    all_users = User.objects.filter(is_active=True)
+def create_weekly_order_csv(all_active_users, current_menu_meal_totals):
     weekly_order_csv_file = 'weekly_orders.csv'
     with open(weekly_order_csv_file, 'w') as weekly_order:
         csv_writer = csv.writer(weekly_order)        
         csv_writer.writerow([])
-        for user in all_users:
-            orderItems = OrderItem.objects.filter(user=user, is_on_current_menu=True, quantity__gt=0)
-
+        
+        for user in all_active_users:
+            orderItems = get_users_order(user)
             csv_writer.writerow(["Customer Name:", user.name])
             csv_writer.writerow(["Phone Number:", user.phone_number.as_national])
             csv_writer.writerow(["Address:", f'{user.street_address} {user.city},{user.state} {user.zip_code}'])
@@ -139,10 +148,16 @@ def create_weekly_order_csv():
 
             for item in orderItems:
                 csv_writer.writerow([item.quantity, item.item, item.special_requests])
+
             csv_writer.writerow([])
             csv_writer.writerow([])
+
+        csv_writer.writerow(["Total Quantities", "Meals"])
+        for food in current_menu_meal_totals:
+            csv_writer.writerow([current_menu_meal_totals[food], food])
+
     
-def email_weekly_orders_csv():
+def email_weekly_orders_csv(current_menu_meal_totals):
     """
     Emails all the current admins an email containing every users current order.
     Email contains a csv file as well.
@@ -155,6 +170,7 @@ def email_weekly_orders_csv():
         "all_orders": all_orders,
         "user_login_url": user_login_url,
         "current_date": current_date,
+        "current_menu_meal_totals": current_menu_meal_totals,
     }
 
     subject = 'Weekly Orders Email'
