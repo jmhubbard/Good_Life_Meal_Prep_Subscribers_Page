@@ -7,7 +7,7 @@ class OrderItemAdmin(admin.ModelAdmin):
     list_display = ('user', 'item', 'quantity', 'special_requests', 'is_on_current_menu', 'updated_at')
     field_display = ('user', 'item', 'quantity', 'special_requests', 'is_on_current_menu', 'updated_at')
     readonly_fields = ('updated_at',)
-    search_fields = ('user', 'item')
+    search_fields = ('user__name', 'item__name')
     ordering = ('user',)
 
 admin.site.register(OrderItem, OrderItemAdmin)
