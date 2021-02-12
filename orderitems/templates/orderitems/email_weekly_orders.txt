@@ -1,10 +1,15 @@
 {% for order in all_orders %}
-    Name: {{ order.name }}
-    Email: {{ order.email}}
-    Phone Number: {{ order.phone_number }}
-    Delivery Address:
-      {{ order.street_address}} {{ order.city}}, {{ order.state }} {{ order.zipcode }}
-    Order:
-    {% for meal in order.meals %}   - ({{ meal.quantity}}) {{ meal.item }} - Special Request: {{ meal.special_requests}}
-    {% endfor %}
+Name: {{ order.name }}
+Email: {{ order.email}}
+Phone Number: {{ order.phone_number }}
+Delivery Address:
+  {{ order.street_address}} {{ order.city}}, {{ order.state }} {{ order.zipcode }}
+Order:
+{% for meal in order.meals %}   - ({{ meal.quantity}}) {{ meal.item }} - Special Request: {{ meal.special_requests}}
+{% endfor %}
+{% endfor %}
+
+Meal Totals
+{% for meal, quantity in current_menu_meal_totals.items %}
+({{ quantity }}) {{ meal }}
 {% endfor %}

@@ -134,6 +134,18 @@
                       </td>
                     </tr>
                     {% endfor %}
+                    <tr>
+                      <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 25px">
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 3px;"><strong>Meal Totals</strong></p>
+                      </td>
+                    </tr>
+                    {% for meal, quantity in current_menu_meal_totals.items %}
+                    <tr>
+                      <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 25px">
+                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 3px;"><strong>({{ quantity }}) </strong><em>{{ meal }}</em></p>
+                      </td>
+                    </tr>
+                    {% endfor %}
                   </table>
                 </td>
               </tr>
