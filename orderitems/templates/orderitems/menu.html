@@ -1,7 +1,28 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-{% if order_items|length > 0 %}
+{% if current_user.remaining_meals <= 0 %}
+<div class="container firstElement text-center">
+    {% for message in messages %}
+    <div class="alert alert-info text-center" role="alert">{{ message }}</div>
+    {% endfor %}
+    <h1>Weekly Menu</h1>
+    <p>Uh oh! It looks like you've ran out meals on your subscription plan. We hope that you really enjoyed our service and if you would like the add more meals to your plan, please click the link below</p>
+    <div class="container text-center">
+        <a href="https://www.thegoodlifemealprep.com/online-ordering" class="btn btn-lg btn-outline-info">Add Meals</a>
+    </div>
+</div>
+
+{% elif order_items|length <= 0%}
+<div class="container firstElement text-center">
+    {% for message in messages %}
+    <div class="alert alert-info text-center" role="alert">{{ message }}</div>
+    {% endfor %}
+    <h1>Weekly Menu</h1>
+    <p class="fs-4">We are sorry, but the ordering for this week's menu ended at 11:59 pm on Thursday. Please stop by next week to place your orders!</p>
+</div>
+
+{% else %}
 <div class="container firstElement">
     {% for message in messages %}
     <div class="alert alert-info text-center" role="alert">{{ message }}</div>
@@ -71,19 +92,6 @@
         </div>
     </div>
     {% endfor %}
-</div>
-
-{% else %}
-<div class="container firstElement">
-    {% for message in messages %}
-    <div class="alert alert-info text-center" role="alert">{{ message }}</div>
-    {% endfor %}
-    <h1 class="text-center">Weekly Menu</h1>
-    <h3>Hello {{ current_user.name }}!</h3>
-</div>
-
-<div class="container letterText closedMenu">
-    <p class="fs-4">We are sorry, but the ordering for this week's menu ended at 11:59 pm on Thursday. Please stop by next week to place your orders!</p>
 </div>
 
 {% endif %}
