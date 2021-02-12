@@ -9,9 +9,16 @@ import datetime
 class Command(BaseCommand):
     help = 'Emails admin an email containing the weekly orders if it is friday in UTC timezone'
 
+    def add_arguments(self, parser):
+        parser.add_argument('--any_day', action='store_true', help='Sends email regardless of the day of the week')
+
+
     def handle(self, *args, **options):
         #Monday=0, Tuesday=1, Wednesday=2, Thursday=3, Friday=4, Saturday=5, Sunday=6
         current_day_of_the_week = datetime.datetime.today().weekday()
+
+        if options['any_day']:
+            current_day_of_the_week = 4
 
         if current_day_of_the_week == 4:
             total_emails_sent, current_admins = emailWeeklyOrders()
