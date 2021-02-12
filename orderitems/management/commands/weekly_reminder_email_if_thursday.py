@@ -7,7 +7,7 @@ import datetime
 
 
 class Command(BaseCommand):
-    help = 'Emails admin an email containing the weekly orders'
+    help = 'Emails aall users a weekly reminder email'
 
     def add_arguments(self, parser):
         parser.add_argument('--any_day', action='store_true', help='Sends email regardless of the day of the week')
