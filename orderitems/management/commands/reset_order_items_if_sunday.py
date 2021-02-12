@@ -11,7 +11,7 @@ class Command(BaseCommand):
     help = 'Resets all previous weeks order items quantity to 0 and is_on_current_menu to False'
 
     def add_arguments(self, parser):
-        parser.add_argument('--any_day', action='store_true', help='Runs the function regardless of the day of the week.')
+        parser.add_argument('--any_day', action='store_true', help='Resets all previous weeks order items quantity to 0 regardless of the day of the week.')
 
 
     def handle(self, *args, **options):

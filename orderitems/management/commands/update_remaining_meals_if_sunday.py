@@ -10,7 +10,7 @@ class Command(BaseCommand):
     help = 'Updates all users remaining meal totals after the current weeks order'
 
     def add_arguments(self, parser):
-        parser.add_argument('--any_day', action='store_true', help='Sends email regardless of the day of the week')
+        parser.add_argument('--any_day', action='store_true', help='Updates all users remaining meal totals regardless of the day of the week.')
 
 
     def handle(self, *args, **options):
