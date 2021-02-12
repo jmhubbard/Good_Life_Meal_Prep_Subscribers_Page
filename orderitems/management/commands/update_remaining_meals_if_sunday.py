@@ -9,8 +9,16 @@ import datetime
 class Command(BaseCommand):
     help = 'Updates all users remaining meal totals after the current weeks order'
 
+    def add_arguments(self, parser):
+        parser.add_argument('--any_day', action='store_true', help='Sends email regardless of the day of the week')
+
+
     def handle(self, *args, **options):
         current_day_of_the_week = datetime.datetime.today().weekday()
+
+        if options['any_day']:
+            current_day_of_the_week = 6
+
 
         if current_day_of_the_week == 6:
             all_users = User.objects.filter(is_active=True)
@@ -27,5 +35,6 @@ class Command(BaseCommand):
                     user.remaining_meals = 0
                     user.save()
                     print("User went over meals")
+                    
         else:
             print("Today isn't Sunday so remaining meals won't be calculated")
