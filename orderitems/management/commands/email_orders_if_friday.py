@@ -1,9 +1,8 @@
+import datetime
+
 from django.core.management.base import BaseCommand
 
-
 from orderitems.utils import emailWeeklyOrders, weekly_order_confirmation_email
-
-import datetime
 
 
 class Command(BaseCommand):

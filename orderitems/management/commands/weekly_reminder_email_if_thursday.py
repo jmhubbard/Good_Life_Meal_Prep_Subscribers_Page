@@ -1,9 +1,8 @@
+import datetime
+
 from django.core.management.base import BaseCommand
 
-
 from orderitems.utils import weekly_reminder_email
-
-import datetime
 
 
 class Command(BaseCommand):

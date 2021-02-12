@@ -1,10 +1,11 @@
+import datetime
+
 from django.core.management.base import BaseCommand
 from django.db import IntegrityError
 
 from orderitems.models import OrderItem
 from users.models import User
 
-import datetime
 
 class Command(BaseCommand):
     help = 'Updates all users remaining meal totals after the current weeks order'
