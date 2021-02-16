@@ -12,4 +12,4 @@ DEBUG = False
 ALLOWED_HOSTS = ['warm-ravine-52787.herokuapp.com', 'subscribers.thegoodlifemealprep.com']
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = True
