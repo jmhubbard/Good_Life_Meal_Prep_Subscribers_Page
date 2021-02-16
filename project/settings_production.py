@@ -9,7 +9,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['warm-ravine-52787.herokuapp.com']
+ALLOWED_HOSTS = ['warm-ravine-52787.herokuapp.com', 'subscribers.thegoodlifemealprep.com']
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # SECURE_SSL_REDIRECT = True
