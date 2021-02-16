@@ -1,5 +1,9 @@
 {% extends 'main/base.html' %}
 
+{% block title %}
+The Good Life Meal Prep Subscribers | Weekly Menu
+{% endblock %}
+
 {% block content %}
 {% if current_user.remaining_meals <= 0 %}
 <div class="container firstElement text-center">
