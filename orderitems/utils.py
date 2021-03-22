@@ -141,7 +141,11 @@ def create_weekly_order_csv(all_active_users, current_menu_meal_totals):
         
         for user in all_active_users:
             orderItems = get_users_order(user)
+            total_meals = 0
+            for item in orderItems:
+                total_meals += item.quantity
             csv_writer.writerow(["Customer Name:", user.name])
+            csv_writer.writerow(["Remaining Meals:", user.remaining_meals - total_meals])
             csv_writer.writerow(["Phone Number:", user.phone_number.as_national])
             csv_writer.writerow(["Address:", f'{user.street_address} {user.city},{user.state} {user.zip_code}'])
             csv_writer.writerow(["Quantity", "Meal", "Special Request"])
