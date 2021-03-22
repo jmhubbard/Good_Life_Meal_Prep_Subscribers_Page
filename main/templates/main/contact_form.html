@@ -8,8 +8,7 @@ The Good Life Meal Prep Subscribers | Contact Form
 {% block content %}
 <div class="container text-center col-md-6 firstElement">
     <h1>Contact Form</h1>
-    <p>If you are having an issue with the service or have any comments that you would like us to know,
-        fill out the contact form below and someone will respond shortly.
+    <p>If you have an issue with the service or have any comments that you would like us to know, please fill out the contact form below, and someone will respond shortly.
     </p>
     {% for message in messages %}
     <div class="alert alert-info" role="alert">
@@ -23,7 +22,8 @@ The Good Life Meal Prep Subscribers | Contact Form
             {% csrf_token %}
             {{ form.as_p }}
             <div class="container text-center">
-                <input type="submit" value="Submit" class="btn btn-lg col-6 btn-outline-primary">
+                <a href="{% url 'orderitems' %}" class="btn btn-outline-dark btn-lg">Cancel</a>
+                <input type="submit" value="Submit" class="btn btn-lg btn-outline-primary">
             </div>
         </form>
     </div>
