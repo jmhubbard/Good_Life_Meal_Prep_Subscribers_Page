@@ -56,6 +56,10 @@ class UserSignUpForm(forms.ModelForm):
             'zip_code': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
+        labels = {
+            'name': 'Full name'
+        }
+
     def clean_email(self):
         email = self.cleaned_data['email']
         return email.lower()
@@ -95,6 +99,10 @@ class UserUpdateForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'class': 'form-control'}),
             'state': forms.Select(attrs={'class': 'form-control'}),
             'zip_code': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        
+        labels = {
+            'name': 'Full name'
         }
 
 
