@@ -5,7 +5,7 @@ The Good Life Meal Prep Subscribers | {{ object.name }}
 {% endblock %}
 
 {% block content %}
-<div class="container text-center firstElement col">
+<div class="container text-center firstElement col mb-3">
     <h1>Profile Page for {{ object.name }}</h1>
 </div>
 <div class="container">
@@ -13,17 +13,16 @@ The Good Life Meal Prep Subscribers | {{ object.name }}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <div class="container text-center">
+            <div class="container text-center mb-4">
                 <a href="{% url 'orderitems' %}" class="btn btn-outline-dark btn-lg">Cancel</a>
                 <input type="submit" value="Update" class="btn btn-lg btn-outline-primary">
             </div>
+            <div class="container text-center mb-3">
+                <a href="{% url 'password_change' %}" class="btn btn-warning btn-md">Change Password</a>
+                <a href="{% url 'delete_account' object.id %}" class="btn btn-danger btn-md">Delete Account</a>
+            </div>
+            
         </form>
     </div>
 </div>
-<hr>
-<div class="container text-center">
-    <a href="{% url 'password_change' %}" class="btn btn-warning btn-md">Change Password</a>
-    <a href="{% url 'delete_account' object.id %}" class="btn btn-danger btn-md">Delete Account</a>
-</div>
-
 {% endblock %}
