@@ -17,6 +17,7 @@ The Good Life Meal Prep Subscribers | Subscribers Sign Up Page
             {% csrf_token %}
             {{ form.as_p }}
             <div class="container text-center">
+                <a href="{% url 'home' %}" class="btn btn-outline-dark btn-lg">Cancel</a>
                 <input type="submit" value="Submit" class="btn btn-lg btn-outline-info">
             </div>
         </form>
