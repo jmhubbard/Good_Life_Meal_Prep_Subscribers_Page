@@ -14,8 +14,8 @@ The Good Life Meal Prep Subscribers | {{ object.name }}
             {% csrf_token %}
             {{ form.as_p }}
             <div class="container text-center">
-                <a href="{% url 'orderitems' %}" class="btn btn-secondary btn-md">Cancel</a>
-                <input type="submit" value="Update" class="btn btn-success btn-md">
+                <a href="{% url 'orderitems' %}" class="btn btn-outline-dark btn-lg">Cancel</a>
+                <input type="submit" value="Update" class="btn btn-lg btn-outline-primary">
             </div>
         </form>
     </div>
