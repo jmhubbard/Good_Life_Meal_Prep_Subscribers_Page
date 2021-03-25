@@ -20,7 +20,7 @@ from django.views.generic.edit import (
         UpdateView,
     )
 
-from .forms import UserSignUpForm, UserUpdateForm, CustomUserPasswordChangeForm, CustomPasswordResetForm
+from .forms import UserSignUpForm, UserUpdateForm, CustomUserPasswordChangeForm, CustomPasswordResetForm, CustomPasswordSetForm
 from .models import User
 from main.decorators import unauthenticated_user
 
@@ -89,7 +89,7 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     A view this is displayed once an unauthenticated user clicks the link in their email to reset their password.
     Authenticated users will be redirected to the menu page.
     """
-
+    form_class = CustomPasswordSetForm
     template_name = "users/password_reset_form.html"
 
     @method_decorator(unauthenticated_user) #If user is already authenticated they will be redirected to their subscription page
@@ -214,5 +214,5 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
         if current_user != obj:
             raise PermissionDenied
         
-        return obj
+        return obj 
 
