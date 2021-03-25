@@ -214,5 +214,5 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
         if current_user != obj:
             raise PermissionDenied
         
-        return obj
+        return obj 
 
